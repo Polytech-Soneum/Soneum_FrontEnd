@@ -1,0 +1,70 @@
+.toggle {
+  border: 1px solid gray;
+  width: 25vmin;
+  height: 5vmin;
+  border-radius: 10em;
+  padding: 0;
+  background-color: lightgray;
+  margin: 1em;
+  position: absolute;
+  right: 1%;
+}
+
+.toggle_button {
+  height: 5vmin;
+  margin: 0;
+  line-height: 5vmin;
+  text-align: center;
+  width: 50%;
+  float: left;
+  font-weight: bold;
+  position: relative;
+  z-index: 2;
+}
+
+.toggle_button:hover {
+  cursor: pointer;
+}
+
+.toggle_circle {
+  background-color: #d2e9ef;
+  height: 5vmin;
+  width: 50%;
+  border-radius: 10em;
+  position: relative;
+  z-index: 1;
+}
+
+.toggle_circle_moving_left {
+  transform: translateX(0vmin);
+  transition-duration: 0.5s;
+}
+
+.toggle_circle_moving_right {
+  transform: translateX(12.5vmin);
+  transition-duration: 0.5s;
+}
+
+.sidebar_menu {
+  right: 0;
+  float: right;
+  position: relative;
+  z-index: 4;
+}
+
+.sidebar {
+  float: right;
+  height: 50vmin;
+  width: 25%;
+  background-color: lightsalmon;
+  top: 0;
+  right: -100%;
+  position: relative;
+  z-index: 3;
+  transition: 1.5s;
+  margin: 0;
+}
+
+.sidebar_open {
+  right: 0;
+}

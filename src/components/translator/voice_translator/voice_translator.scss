@@ -1,0 +1,57 @@
+.text_input {
+  width: 95%;
+  border: 1px solid black;
+  margin: 5em auto 1.5em auto;
+  border-radius: 1em;
+  height: 15vmin;
+
+  &_input_area {
+    width: 80%;
+    height: 9vmin;
+    padding: 1em 0;
+    margin: 0.5em 0 0.5em 1em;
+    border: none;
+    resize: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    background-color: white;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &_micro_button {
+    width: 4%;
+    height: 15vmin;
+  }
+
+  &_translate_button {
+    width: 10%;
+    float: right;
+    background-color: orange;
+    height: 15vmin;
+    line-height: 15vmin;
+    border-radius: 0 1em 1em 0;
+    text-align: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &_text {
+      margin: 0;
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+  }
+}
+
+.avatar_area {
+  border: 1px solid black;
+  width: 95%;
+  margin: 0 auto;
+  height: 55vmin;
+  border-radius: 1em;
+  background-color: #FFF1DD;
+}
