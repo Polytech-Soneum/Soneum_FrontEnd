@@ -1,0 +1,43 @@
+.page_moving_area {
+  width: 95%;
+  height: 50vh;
+  margin: 8em auto;
+
+  &_div {
+    width: 45%;
+    margin: 1.5em 2.5%;
+    background-color: blue;
+    height: 25vh;
+    float: left;
+    border-radius: 35px;
+
+    &_name {
+      text-align: center;
+      font-weight: bold;
+      font-size: 2em;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
+
+    &_buttons {
+      width: 100%;
+      height: 12.5vh;
+      padding: 0;
+      margin: 0;
+
+      &_button {
+        width: 44%;
+        margin: 0 2.5%;
+        height: 12.5vh;
+        border: 1px solid black;
+        border-radius: 35px;
+        background-color: white;
+        text-align: center;
+        line-height: 12.5vh;
+        font-weight: bold;
+        font-size: 1.5em;
+        float: left;
+      }
+    }
+  }
+}

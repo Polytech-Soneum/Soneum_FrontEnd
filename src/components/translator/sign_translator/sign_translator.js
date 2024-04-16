@@ -3,8 +3,9 @@ import './sign_translator.scss';
 import RecordStart from '../../../assets/icons/RecordStart.svg';
 import Microphone_RED from '../../../assets/icons/Microphone_red.svg';
 import Speaker from '../../../assets/icons/Speaker.svg';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import GenderToggle from "../../toggle/gender_toggle/gender_toggle";
+import TranslateToggle from "../../toggle/translate_toggle/translate_toggle";
 
 function SignTranslator() {
     const [textAreaValue, setTextAreaValue] = useState('');

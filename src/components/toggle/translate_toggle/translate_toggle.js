@@ -1,37 +1,36 @@
-import './translate_toggle.scss';
-import {Link} from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import './translate_toggle.scss'; // SCSS 파일명 변경
 
 function TranslateToggle() {
-    const voice_translate_select = () => {
-        const toggle_value = document.getElementsByClassName("toggle_circle")[0];
+    const location = useLocation();
+    const [isOn, setIsOn] = useState(location.pathname.includes('voice'));
 
-        if(toggle_value.classList.value.split(" ").includes("toggle_circle_moving_right")) {
-            toggle_value.classList.remove("toggle_circle_moving_right");
-        }
+    useEffect(() => {
+        setIsOn(location.pathname.includes('voice'));
+    }, [location.pathname]);
 
-        toggle_value.classList.add("toggle_circle_moving_left");
-    }
+    const toggleTranslation = () => {
+        const newPath = isOn ? "/translate/sign" : "/translate/voice"; // 링크 변경
+        setIsOn(!isOn);
+        // 이동할 때마다 토글 상태를 업데이트합니다.
+        window.location.href = newPath;
+    };
 
-    const sign_translate_select = () => {
-        const toggle_value = document.getElementsByClassName("toggle_circle")[0];
-
-        if(toggle_value.classList.value.split(" ").includes("toggle_circle_moving_left")) {
-            toggle_value.classList.remove("toggle_circle_moving_left");
-        }
-
-        toggle_value.classList.add("toggle_circle_moving_right");
+    // '/translate'가 pathname에 없는 경우 토글 숨기기
+    if (!location.pathname.includes('translate')) {
+        return null;
     }
 
     return (
-        <div>
-            <div className="toggle">
-                <Link to={"/translate/voice"} style={{textDecoration: "inherit", color: "inherit"}}><div className="toggle_button" onClick={voice_translate_select}> 음성번역 </div></Link>
-                <Link to={"/translate/sign"} style={{textDecoration: "inherit", color: "inherit"}}><div className="toggle_button" onClick={sign_translate_select}> 수어번역 </div></Link>
-                <div className="toggle_circle"></div>
-            </div>
+        <div className="toggle-test-container">
+            <button className={isOn ? 'toggle-test-button active' : 'toggle-test-button'} onClick={toggleTranslation}>
+                <span className="toggle-indicator" style={{ left: isOn ? '0' : '50%' }}></span>
+                <span className="text-on">음성번역</span>
+                <span className="text-off">수어번역</span>
+            </button>
         </div>
-        );
-    }
+    );
+}
 
 export default TranslateToggle;
-

@@ -1,0 +1,47 @@
+.chosen_box {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.translate_box {
+  width: 95%;
+  margin: 0 auto;
+  // margin: 12.5em 1.5%;
+  border: 1px solid black;
+  text-align: center;
+  height: 25em;
+  background-color: lightcoral;
+  border-radius: 30px;
+  float: left;
+
+  p {
+    font-weight: bold;
+    font-size: 2em;
+    margin: 1em 0 0;
+  }
+
+  &_button {
+    width: 95%;
+    margin: 0 auto;
+    padding: 0;
+
+    div {
+      border: 1px solid black;
+      width: 44%;
+      margin: 2em 2.5%;
+      float: left;
+      height: 15em;
+      line-height: 15em;
+      font-weight: bold;
+      background-color: white;
+      border-radius: 30px;
+
+    }
+  }
+
+
+
+  &_sign {
+  }
+}

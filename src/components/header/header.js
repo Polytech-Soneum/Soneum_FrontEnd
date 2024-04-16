@@ -4,6 +4,7 @@ import './header.scss';
 import {Link} from "react-router-dom";
 
 function Header() {
+
     return (
         <header className="App-header">
             <div className="page_logo">
@@ -13,8 +14,8 @@ function Header() {
                         <p className="page_logo_name_title"> 손이음 </p>
                         <span className="page_logo_name_subtitle"> 손과 소리를 잇다 </span>
                     </div>
-                    <img src={menu} className="menu_image" alt="menu"/>
                 </Link>
+                <img src={menu} className="menu_image" alt="menu"/>
             </div>
         </header>
     );

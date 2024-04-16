@@ -6,7 +6,7 @@
   height: 15vmin;
 
   &_input_area {
-    width: 80%;
+    width: 85%;
     height: 9vmin;
     padding: 1em 0;
     margin: 0.5em 0 0.5em 1em;
@@ -23,11 +23,12 @@
 
   &_micro_button {
     width: 4%;
-    height: 15vmin;
+    height: 7vmin;
+    margin: 4vmin 0;
   }
 
   &_translate_button {
-    width: 10%;
+    width: 8%;
     float: right;
     background-color: orange;
     height: 15vmin;

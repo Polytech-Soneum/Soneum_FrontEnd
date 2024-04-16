@@ -3,6 +3,7 @@
   min-height: 8vh;
   color: white;
   padding: 2vh 0;
+  margin: 0;
 
   &_image {
     height: 8vmin;
@@ -32,4 +33,11 @@
   float: right;
   height: 6vmin;
   margin-right: 1vmin;
+}
+
+.navigater {
+  border: 1px solid black;
+  height: 150px;
+  width: 15%;
+  float: right;
 }
