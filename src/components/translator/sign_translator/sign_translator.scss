@@ -1,0 +1,68 @@
+.camera_area {
+  border: 1px solid black;
+  width: 95%;
+  margin: 5em auto 1.5em auto;
+  height: 55vmin;
+  border-radius: 1em;
+  background-color: #FFF1DD;
+
+  &_camera_zone {
+    height: 44vmin;
+    margin: 0;
+  }
+
+  &_record_button {
+    line-height: 10vh;
+    height: 10vh;
+    width: 7%;
+    float: right;
+    margin: 0 2em;
+  }
+}
+
+.text_output {
+  display: flex;
+  width: 95%;
+  border: 1px solid black;
+  margin: 0 auto;
+  border-radius: 1em;
+  height: 20vmin;
+
+  &_input_area {
+    width: 90%;
+    height: 9vmin;
+    padding: 1em 0;
+    margin: 0.5em 0 0.5em 1em;
+    border: none;
+    resize: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    background-color: white;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &_buttons {
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    height: 18vmin;
+    text-align: center;
+    padding: 1em 0;
+
+    &_speaker_button {
+      width: 50%;
+      height: 7vmin;
+      margin: 0.2em auto;
+      padding: 0;
+    }
+
+    &_gender_toggle {
+      height: 7vmin;
+      margin: 0 auto;
+      border: 1px solid black;
+    }
+  }
+}

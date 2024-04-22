@@ -1,0 +1,51 @@
+// TranslateToggle.scss
+
+.toggle-test-container {
+  display: flex;
+  justify-content: flex-end;
+  width: calc(100% - 2vw);
+}
+
+.toggle-test-button {
+  position: relative;
+  width: 15vw;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.toggle-indicator {
+  position: absolute;
+  width: 50%;
+  height: 40px;
+  background-color: aquamarine;
+  transition: left 0.3s ease;
+  top: 0;
+}
+
+.text-on,
+.text-off {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50%;
+  height: 100%;
+  line-height: 40px;
+  text-align: center;
+  color: #000;
+}
+
+.text-on {
+  left: 0;
+}
+
+.text-off {
+  right: 0;
+}
+
+.toggle-test-button.active .toggle-indicator {
+  left: 50%;
+}

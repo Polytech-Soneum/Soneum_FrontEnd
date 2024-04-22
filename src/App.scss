@@ -1,0 +1,204 @@
+.chosen_box {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.translate_box {
+  width: 95%;
+  margin: 0 auto;
+  // margin: 12.5em 1.5%;
+  border: 1px solid black;
+  text-align: center;
+  height: 25em;
+  background-color: lightcoral;
+  border-radius: 30px;
+  float: left;
+
+  p {
+    font-weight: bold;
+    font-size: 2em;
+    margin: 1em 0 0;
+  }
+
+  &_button {
+    width: 95%;
+    margin: 0 auto;
+    padding: 0;
+
+    div {
+      border: 1px solid black;
+      width: 44%;
+      margin: 2em 2.5%;
+      float: left;
+      height: 15em;
+      line-height: 15em;
+      font-weight: bold;
+      background-color: white;
+      border-radius: 30px;
+
+    }
+  }
+
+
+
+  &_sign {
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  background-color: #374c75;
+  width: 100vw;
+  height: 100vh;
+
+  $header_height: 7vh;
+  $footer_height: 5vh;
+
+  &_header {
+    width: 100vw;
+    height: $header_height;
+    background-color: #d2e9ef;
+
+    &_logo_area {
+      float: left;
+      width: 20vw;
+      height: $header_height;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &_logo {
+        height: $header_height;
+        line-height: $header_height;
+        width: 8vw;
+        float: left;
+      }
+
+      &_title {
+        height: $header_height;
+        line-height: ($header_height/3);
+        padding: (($header_height/3)/2) 0;
+        width: 12vw;
+        display: inline-block;
+        font-weight: bold;
+        letter-spacing: 1.37em;
+
+        &_sub {
+          font-size: 0.8em;
+          letter-spacing: 0;
+        }
+      }
+    }
+
+    &_menu_area {
+      display: inline-block;
+      height: $header_height;
+      width: 40vw;
+
+      &_tag {
+        height: $header_height;
+        line-height: $header_height;
+        font-weight: bold;
+        float: left;
+        margin: 0 1vw;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &_main_area {
+    height: 100vh - $header_height - $footer_height - 2vh;
+    padding: 1vh 0;
+
+    $translate_area_height: 5vh;
+    $text_area_height: 20vh;
+    $other_area_height: 50vh;
+
+    &_toggle {
+      height: $translate_area_height;
+      width: 90vw;
+      margin: 0 auto;
+
+      &_translate {
+        height: $translate_area_height;
+        width: 20vw;
+        float: right;
+        background-color: #d2e9ef;
+        border-radius: 20px;
+
+        &_text {
+          width: 50%;
+          float: left;
+          height: $translate_area_height;
+          line-height: $translate_area_height;
+          text-align: center;
+          position: relative;
+          z-index: 1;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        &_circle {
+          background-color: aliceblue;
+          width: 50%;
+          height: $translate_area_height;
+          border-radius: 20px;
+          z-index: 0;
+
+          &_left_move {
+            transform: translateX(0);
+          }
+
+          &_right_move {
+            transform: translateX(100%);
+          }
+        }
+      }
+    }
+
+    &_text {
+      height: $text_area_height;
+      width: 90vw;
+      margin: 2vh auto;
+      background-color: white;
+      border-radius: 20px;
+      border: none;
+    }
+
+    &_other {
+      height: $other_area_height;
+      width: 90vw;
+      margin: 0 auto;
+      background-color: coral;
+      border-radius: 20px;
+      border: none;
+    }
+  }
+
+  &_footer {
+    height: $footer_height;
+    width: 100vw;
+    background-color: white;
+
+    &_tag {
+      float: left;
+      line-height: $footer_height;
+      margin: 0 2vw;
+      
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
