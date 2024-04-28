@@ -1,0 +1,28 @@
+$footer_height: 8vh;
+
+.page_footer {
+  height: $footer_height;
+  width: 100vw;
+  background-color: #374c75;
+
+  &_menus {
+    height: $footer_height;
+    line-height: $footer_height;
+    margin: 0;
+    list-style: none;
+    float: left;
+    font-size: 1.5vw;
+
+    &_menu {
+      margin: 0 2vw;
+      display: inline-block;
+      color: white;
+      font-weight: bold;
+      width: 10vw;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

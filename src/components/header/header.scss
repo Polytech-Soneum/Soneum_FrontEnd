@@ -1,43 +1,102 @@
-.page_logo {
+$header_height: 10vh;
+$menu_height: calc($header_height / 2);
+
+.page_header {
   background-color: #374c75;
-  min-height: 8vh;
-  color: white;
-  padding: 2vh 0;
-  margin: 0;
+  padding: 0 2vw;
+  width: calc(100vw - 4vw);
+  height: $header_height;
 
-  &_image {
-    height: 8vmin;
+  &_logo {
     float: left;
+    display: inline-block;
+    height: $header_height;
+    line-height: $header_height;
+    width: 15vw;
+    margin: 0 2vw 0 1vw;
   }
 
-  &_name {
+  &_menus {
+    height: $header_height;
+    line-height: $header_height;
+    margin: 0 1vw;
     float: left;
-    height: 8vh;
-    padding: 1.4vh 0;
+    width: 15vw;
+    text-align: center;
+    color: white;
+    font-size: 1.5vw;
 
-    &_title {
-      font-size: 1.5em;
-      margin: 0;
-      padding: 0;
+    &_menu {
+      display: inline-block;
+      font-weight: bold;
+      position: relative;
+      width: 15vw;
+
+      &_sub {
+        display: none;
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        height: $menu_height;
+        line-height: $menu_height;
+
+        &_content {
+          background-color: #d2e9ef;
+          color: black;
+          display: block;
+
+          &:hover {
+            cursor: pointer;
+            background-color: #374c75;
+            color: white;
+          }
+        }
+      }
     }
 
-    &_subtitle {
+    &:hover {
+      background-color: #d2e9ef;
+      color: black;
+      cursor: pointer;
+    }
+  }
+
+  &_search {
+    margin: calc($header_height * 0.3) 1vw;
+    height: $header_height * 0.5;
+    float: right;
+    width: 25vw;
+    background-color: white;
+    border-radius: 50px;
+
+    &_input {
+      float: left;
+      width: 19vw;
+      margin: 0 1vw;
       padding: 0;
-      margin: 0;
+      height: calc($header_height * 0.5);
+      border-radius: 50px;
+      border: none;
+      font-size: 1.2vw;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &_icon {
+      width: 3vw;
+      margin: calc(calc($header_height * 0.1) / 2) 0;
+      height: calc($header_height * 0.4);
+      float: left;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
 
-.menu_image {
-  padding: 1vmin;
-  float: right;
-  height: 6vmin;
-  margin-right: 1vmin;
-}
-
-.navigater {
-  border: 1px solid black;
-  height: 150px;
-  width: 15%;
-  float: right;
+.page_header_menus:hover .page_header_menus_menu_sub {
+  display: block;
 }

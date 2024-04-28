@@ -1,0 +1,46 @@
+$header_height: 10vh;
+
+.page_mobile_header {
+  background-color: #374c75;
+  width: 100vw;
+  z-index: 1;
+
+  .navigate {
+    background-color: #cccccc;
+    position: relative;
+    height: 10vh;
+  }
+
+  div {
+    z-index: 0;
+  }
+
+  span {
+    font-size: 2vw;
+    font-weight: bold;
+  }
+
+  ul {
+    list-style: none;
+    z-index: 1;
+    background-color: white;
+  }
+
+  li {
+    font-weight: bold;
+    margin: 0.5vh 0;
+  }
+
+  &_logo {
+    margin: 0 2vw;
+    position: relative;
+    z-index: 0;
+  }
+
+  &_navigation {
+    height: 50vh;
+    width: 20vw;
+    background-color: #cccccc;
+    z-index: 1;
+  }
+}
