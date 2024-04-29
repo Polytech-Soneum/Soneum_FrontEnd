@@ -1,9 +1,14 @@
 import './header.scss';
 import SoneumWhiteLogo from "../../assets/icons/Soneum_logo_white.svg";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Search from "../../assets/images/search.png";
 
 function Header() {
+    const navigate = useNavigate();
+    const search = () => {
+        const keyword = document.getElementsByClassName('page_header_search_input')[0].value;
+        navigate('/search?'+keyword);
+    }
     return (
         <div className="page_header">
             <Link to={"/"}><img src={SoneumWhiteLogo} alt="손이음 로고" className="page_header_logo"/></Link>
@@ -20,14 +25,14 @@ function Header() {
                 <div className="page_header_menus_menu">
                     <span>수화통역사</span>
                     <div className="page_header_menus_menu_sub">
-                        <Link to={"/certificate"} style={{textDecoration: "none"}}><div className="page_header_menus_menu_sub_content">자격증 정보</div></Link>
+                        <Link to={"/certificate/information"} style={{textDecoration: "none"}}><div className="page_header_menus_menu_sub_content">자격증 정보</div></Link>
                         <div className="page_header_menus_menu_sub_content">모의시험</div>
                     </div>
                 </div>
             </div>
             <div className="page_header_search">
                 <input type="text" className="page_header_search_input"/>
-                <img src={Search} className="page_header_search_icon" alt="검색"/>
+                <img src={Search} className="page_header_search_icon" alt="검색" onClick={search}/>
             </div>
         </div>
     );

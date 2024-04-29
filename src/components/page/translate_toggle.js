@@ -13,11 +13,11 @@ function TranslateToggle() {
         <div>
             <div className="page_main_toggle">
                 <div className="page_main_toggle_area">
-                    <Link to={"/translate/voice"} style={{color: "black"}}>
-                        <div className="page_main_toggle_area_text">음성번역</div>
+                    <Link to={"/translate/voice"} style={{color: "inherit"}}>
+                        <div className={isVoice ? "page_main_toggle_area_text page_main_toggle_area_text_selected" : "page_main_toggle_area_text"}>음성번역</div>
                     </Link>
-                    <Link to={"/translate/sign"} style={{color: "black"}}>
-                        <div className="page_main_toggle_area_text">수어번역</div>
+                    <Link to={"/translate/sign"} style={{color: "inherit"}}>
+                        <div className={isVoice ? "page_main_toggle_area_text" : "page_main_toggle_area_text page_main_toggle_area_text_selected"}>수어번역</div>
                     </Link>
                     <div className={isVoice ? "page_main_toggle_area_circle page_main_toggle_area_circle_left" : "page_main_toggle_area_circle page_main_toggle_area_circle_right"}></div>
                 </div>

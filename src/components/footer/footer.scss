@@ -1,4 +1,4 @@
-$footer_height: 8vh;
+$footer_height: 7vh;
 
 .page_footer {
   height: $footer_height;
@@ -11,17 +11,18 @@ $footer_height: 8vh;
     margin: 0;
     list-style: none;
     float: left;
-    font-size: 1.5vw;
+    font-size: 1vw;
 
     &_menu {
-      margin: 0 2vw;
       display: inline-block;
       color: white;
       font-weight: bold;
-      width: 10vw;
+      width: 7vw;
+      text-align: center;
 
       &:hover {
         cursor: pointer;
+        background-color: #0054aa;
       }
     }
   }

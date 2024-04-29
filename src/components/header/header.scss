@@ -1,36 +1,34 @@
-$header_height: 10vh;
-$menu_height: calc($header_height / 2);
+$header_height: 9vh;
+$menu_height: calc($header_height * 0.6);
 
 .page_header {
   background-color: #374c75;
-  padding: 0 2vw;
-  width: calc(100vw - 4vw);
+  width: 100vw;
   height: $header_height;
 
   &_logo {
     float: left;
     display: inline-block;
-    height: $header_height;
-    line-height: $header_height;
-    width: 15vw;
-    margin: 0 2vw 0 1vw;
+    height: calc($header_height * 0.9);
+    line-height: calc($header_height * 0.9);
+    width: 12vw;
+    margin: 0 1vw 0 3vw;
   }
 
   &_menus {
     height: $header_height;
     line-height: $header_height;
-    margin: 0 1vw;
     float: left;
-    width: 15vw;
+    width: 10vw;
     text-align: center;
     color: white;
-    font-size: 1.5vw;
+    font-size: 1vw;
 
     &_menu {
       display: inline-block;
       font-weight: bold;
       position: relative;
-      width: 15vw;
+      width: 10vw;
 
       &_sub {
         display: none;
@@ -41,43 +39,43 @@ $menu_height: calc($header_height / 2);
         line-height: $menu_height;
 
         &_content {
-          background-color: #d2e9ef;
-          color: black;
+          background-color: #0054aa;
+          color: white;
           display: block;
 
           &:hover {
             cursor: pointer;
-            background-color: #374c75;
-            color: white;
+            background-color: #d2e9ef;
+            color: black;
           }
         }
       }
     }
 
     &:hover {
-      background-color: #d2e9ef;
-      color: black;
+      background-color: #0054aa;
+      color: white;
       cursor: pointer;
     }
   }
 
   &_search {
-    margin: calc($header_height * 0.3) 1vw;
+    margin: calc($header_height * 0.3) 2vw;
     height: $header_height * 0.5;
     float: right;
-    width: 25vw;
+    width: 18vw;
     background-color: white;
     border-radius: 50px;
 
     &_input {
       float: left;
-      width: 19vw;
-      margin: 0 1vw;
+      width: 82%;
+      margin: 0 2%;
       padding: 0;
       height: calc($header_height * 0.5);
       border-radius: 50px;
       border: none;
-      font-size: 1.2vw;
+      font-size: 1vw;
 
       &:focus {
         outline: none;
@@ -85,7 +83,7 @@ $menu_height: calc($header_height / 2);
     }
 
     &_icon {
-      width: 3vw;
+      width: 10%;
       margin: calc(calc($header_height * 0.1) / 2) 0;
       height: calc($header_height * 0.4);
       float: left;

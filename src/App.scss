@@ -1,103 +1,57 @@
-.chosen_box {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
-
-.translate_box {
-  width: 95%;
-  margin: 0 auto;
-  // margin: 12.5em 1.5%;
-  border: 1px solid black;
-  text-align: center;
-  height: 25em;
-  background-color: lightcoral;
-  border-radius: 30px;
-  float: left;
-
-  p {
-    font-weight: bold;
-    font-size: 2em;
-    margin: 1em 0 0;
-  }
-
-  &_button {
-    width: 95%;
-    margin: 0 auto;
-    padding: 0;
-
-    div {
-      border: 1px solid black;
-      width: 44%;
-      margin: 2em 2.5%;
-      float: left;
-      height: 15em;
-      line-height: 15em;
-      font-weight: bold;
-      background-color: white;
-      border-radius: 30px;
-
-    }
-  }
-
-
-
-  &_sign {
-  }
-}
-
 .page {
   margin: 0;
   padding: 0;
 
-  $header_height: 10vh;
-  $footer_height: 8vh;
+  $header_height: 9vh;
+  $footer_height: 7vh;
 
   &_main {
-    background-color: #FFF1DD;
+    background-color: #efede3;
     $toggle_area_height: 5vh;
-    $text_area_height: 20vh;
-    $video_area_height: 45vh;
+    $text_area_height: 65vh;
+    $other_area_height: 65vh;
 
-    $page_padding: calc(100vh - $header_height - $footer_height - $toggle_area_height - $text_area_height - $video_area_height - 4vh);
-
-    height: calc(100vh - $header_height - $footer_height - $page_padding);
-    padding: calc($page_padding / 2) 0;
+    height: calc(100vh - $header_height - $footer_height - 6vh);
+    padding: 3vh 0;
 
     &_toggle {
-      width: 90vw;
-      margin: 0 auto;
+      width: 95%;
+      margin: 0 auto 3vh;
       height: $toggle_area_height;
 
       &_area {
         height: $toggle_area_height;
-        width: 25vw;
-        border-radius: 20px;
+        width: 15%;
+        background-color: #a3b1bd;
+        border-radius: 50px;
         float: right;
-        box-shadow: 1vh 1vw 10px #cccccc;
-        background-color: white;
+        box-shadow: 0 1vh 10px #B7B5B5;
 
         &_text {
-          float: left;
           height: $toggle_area_height;
           line-height: $toggle_area_height;
           width: 50%;
-          text-align: center;
-          font-weight: bold;
+          float: left;
           z-index: 1;
           position: relative;
-          font-size: 1.5vw;
+          text-align: center;
+          font-weight: bold;
+          font-size: 1vw;
 
           &:hover {
             cursor: pointer;
+          }
+
+          &_selected {
+            color: white;
           }
         }
 
         &_circle {
           height: $toggle_area_height;
           width: 50%;
-          border-radius: 20px;
-          background-color: #d2e9ef;
+          border-radius: 50px;
+          background-color: #5d65cc;
           z-index: 0;
 
           &_left {
@@ -112,149 +66,299 @@
     }
 
     &_text_area {
-      width: 90vw;
-      margin: 2vh auto 0;
+      float: left;
+      width: 35%;
+      margin: 0 2.5%;
       height: $text_area_height;
-      border-radius: 20px;
-      box-shadow: 1vh 1vw 10px #cccccc;
+      border-radius: 50px;
+      box-shadow: 0 1vh 1vh #B7B5B5;
       background-color: white;
 
-      &_input {
-        float: left;
-        width: 70vw;
-        height: $text_area_height;
-        border: none;
-        padding: 0;
-        resize: none;
-        border-radius: 20px 0 0 20px;
+      $input_height: calc($text_area_height * 0.85);
+      $button_height: calc($text_area_height - $input_height);
 
-        &:focus {
-          outline: none;
-        }
-      }
+      &_text {
+        height: $input_height;
 
-      &_image {
-        float: left;
-        width: 4vw;
-        margin: 0 3vw;
-        height: $text_area_height;
+        &_input {
+          padding: 3vh 2vw;
+          width: calc(100% - 4vw);
+          height: calc($input_height - 6vh);
+          resize: none;
+          border: none;
+          border-radius: 50px 50px 0 0;
+          font-size: 1.2vw;
 
-        &:hover {
-          cursor: pointer;
+          &:focus {
+            outline: none;
+          }
         }
       }
 
       &_button {
-        float: left;
-        width: 10vw;
-        height: $text_area_height;
-        line-height: $text_area_height;
-        text-align: center;
-        font-weight: bold;
-        font-size: 2.5vw;
-        background-color: orange;
-        border-radius: 0 20px 20px 0;
+        height: $button_height;
+        line-height: $button_height;
+        border-radius: 0 0 50px 50px;
 
-        &:hover {
-          cursor: pointer;
-        }
+        &_image {
+          float: left;
+          width: 75%;
+          height: $button_height;
+          line-height: $button_height;
+          border-radius: 0 0 0 50px;
 
-      }
-
-      &_speaker {
-        float: left;
-        height: $text_area_height;
-        border-radius: 0 20px 20px 0;
-        width: 20vw;
-        text-align: center;
-
-        &_button {
-          margin: 1vh 0;
-          width: 6vw;
-          height: $text_area_height * 0.5;
-
-          &:hover {
-            cursor: pointer;
-          }
-        }
-
-        &_gender {
-          background-color: #cccccc;
-          width: 15vw;
-          margin: 0 auto;
-          height: calc($text_area_height * 0.3);
-          border-radius: 50px;
-
-          &_icon {
-            width: 50%;
-            float: left;
-            height: calc($text_area_height * 0.3);
-            line-height: calc($text_area_height * 0.3);
-            z-index: 1;
-            position: relative;
-
-            &_image {
-              height: calc($text_area_height * 0.2);
-              line-height: calc($text_area_height * 0.2);
-              margin: calc(calc($text_area_height * 0.1) / 2) 0;
-            }
+          &_file {
+            margin: 1.5vh 2vw;
+            float: right;
 
             &:hover {
               cursor: pointer;
             }
           }
+        }
 
-          &_circle {
-            width: 50%;
-            height: calc($text_area_height * 0.3);
-            background-color: #d2e9ef;
+        &_toggle {
+          float: left;
+          width: 75%;
+          height: $button_height;
+          line-height: $button_height;
+          border-radius: 0 0 0 50px;
+
+          &_gender {
+            height: calc($button_height * 0.6);
+            line-height: calc($button_height * 0.6);
+            margin: calc($button_height * 0.2) 0;
+            width: 35%;
+            background-color: #a3b1bd;
             border-radius: 50px;
-            z-index: 0;
+            float: right;
 
-            &_left {
-              transform: translateX(0);
+            &_icon {
+              padding: calc($button_height * 0.1) 0;
+              float: left;
+              width: 50%;
+              text-align: center;
+              z-index: 1;
+              position: relative;
+
+              &_image {
+                height: calc($button_height * 0.4);
+                line-height: calc($button_height * 0.4);
+              }
             }
 
-            &_right {
-              transform: translateX(100%);
+            &_circle {
+              height: calc($button_height * 0.6);
+              line-height: calc($button_height * 0.6);
+              width: 50%;
+              background-color: #5d65cc;
+              border-radius: 50px;
+              z-index: 0;
+
+              &_left {
+                transform: translateX(0);
+              }
+
+              &_right {
+                transform: translateX(100%);
+              }
             }
           }
+        }
+
+        &_translate {
+          float: left;
+          width: 25%;
+          height: $button_height;
+          line-height: $button_height;
+          background-color: #0054aa;
+          border-radius: 0 0 50px 0;
+          text-align: center;
+          font-size: 1.2vw;
+          font-weight: bold;
+          color: white;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        &_speaker {
+          float: left;
+          width: 25%;
+          height: $button_height;
+          line-height: $button_height;
+          border-radius: 0 0 50px 0;
+          text-align: center;
         }
       }
     }
 
-    &_video_area {
-      width: 90vw;
-      margin: 2vh auto 0;
-      height: $video_area_height;
-      border-radius: 20px;
-      box-shadow: 1vh 1vw 10px #cccccc;
-      background-color: #d2e9ef;
+    &_other_area {
+      width: 55%;
+      height: $other_area_height;
+      margin: 0 2.5%;
+      box-shadow: 0 1vh 1vh #B7B5B5;
+      border-radius: 50px;
+      background-color: white;
+      text-align: center;
+      float: left;
 
       &_video {
-        width: 90vw;
-        height: calc($video_area_height * 0.85);
+        width: 100%;
+        height: calc($other_area_height * 0.85);
         border-radius: 20px 20px 0 0;
         text-align: center;
+        background-color: #374c75;
 
         &_logo {
-          margin: calc(calc($video_area_height - 10vh) / 2) auto;
-          height: 10vh;
+          margin: calc(calc($other_area_height * 0.85) * 0.35) auto;
+          height: 15vh;
         }
       }
 
+      &_button {
+        height: calc($other_area_height * 0.15);
+        width: 100%;
+
+        &_image {
+          height: calc($other_area_height * 0.15);
+          width: 100%;
+          text-align: center;
+
+          &_file {
+            height: calc($other_area_height * 0.15);
+            line-height: calc($other_area_height * 0.15);
+            width: 5%;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      &_context {
+        position: relative;
+        top: 82%;
+        width: 90%;
+        margin: 0 auto;
+        height: calc($other_area_height * 0.1);
+        background-color: #cccccc;
+        opacity: 0.5;
+        border-radius: 20px;
+      }
+    }
+
+    &_certificate {
+      $button_area: 5vh;
+      $certificate_area_height: calc(100vh - $header_height - $footer_height - 6vh);
+
+      width: 90vw;
+      margin: 0 auto;
+      height: $certificate_area_height;
+
       &_button_area {
-        width: 90vw;
-        height: calc($video_area_height * 0.15);
-        border-radius: 0 0 20px 20px;
+        width: 100%;
+        margin: 0 auto 3vh;
 
         &_button {
-          height: calc($video_area_height * 0.12);
-          float: right;
-          margin: 0 2vw;
+          width: 20%;
+          height: $button_area;
+          line-height: $button_area;
+          background-color: #374c75;
+          text-align: center;
+          color: white;
+          font-weight: bold;
+          border-radius: 50px;
+          float: left;
+          margin: 0 2.5%;
 
           &:hover {
+            background-color: #0054aa;
             cursor: pointer;
+          }
+
+          &_selected {
+            background-color: #0054aa;
+          }
+        }
+      }
+
+      &_button_area::after {
+        content:'';
+        display:block;
+        clear:both;
+      }
+
+      &_subject {
+        $subject_height: calc($certificate_area_height - $button_area - 3vh);
+        width: 100%;
+        height: $subject_height;
+        background-color: white;
+
+        &_hidden {
+          display: none;
+        }
+
+        &_title {
+          width: 100%;
+          text-align: center;
+          font-size: 1.5vw;
+          font-weight: bold;
+          height: calc($subject_height * 0.15);
+          line-height: calc($subject_height * 0.15);
+        }
+
+        &_info {
+          $info_height: calc($subject_height * 0.75);
+          height: $info_height;
+          width: 23%;
+          margin: 0 1%;
+          float: left;
+          background-color: #d2e9ef;
+          padding: 0;
+          border-radius: 20px;
+
+          &_title {
+            width: 100%;
+            text-align: center;
+            height: calc($info_height*0.1);
+            line-height: calc($info_height*0.1);
+            font-size: 1.2vw;
+            font-weight: bold;
+            color: blue;
+          }
+
+          &_subject {
+            width: 90%;
+            margin: 0 auto;
+            height: calc($info_height*0.9);
+            line-height: calc($info_height*0.1);
+            word-break: keep-all;
+            font-weight: bold;
+
+            &_div {
+              width: 95%;
+              height: calc($info_height*0.24);
+              margin: 1vh auto;
+              background-color: white;
+              padding: 0 2%;
+              border-radius: 20px;
+
+              &_title {
+                width: 96%;
+                border-bottom: 1px solid gray;
+                margin: 0 2%;
+                color: blue;
+              }
+
+              &_context {
+                line-height: calc($info_height*0.065);
+                width: 94%;
+                margin: 0 3%;
+              }
+            }
           }
         }
       }
