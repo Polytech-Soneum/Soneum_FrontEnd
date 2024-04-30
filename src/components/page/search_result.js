@@ -1,14 +1,98 @@
-import SoneumWhiteLogo from "../../assets/icons/Soneum_logo_white.svg";
-import {Link} from "react-router-dom";
-import Search from "../../assets/images/search.png";
+import SearchIcon from '../../assets/images/search.png';
+import {useLocation, useParams} from "react-router-dom";
 
 function SearchResult() {
+    const params = useLocation();
+
     return (
-        <div className="page_main_search_result">
+        <div className="page_main_search_area">
             <div>
-                <p>문의사항</p>
-                <p>고객센터</p>
-                <p>자격증정보</p>
+                <div className="page_main_search_area_param">
+                    <input type="text" className="page_main_search_area_param_input" value={new URLSearchParams(params.search).get('keyword')}/>
+                    <img src={SearchIcon} className="page_main_search_area_param_icon" alt="검색"/>
+                </div>
+                {/* TODO: 추후 검색기록량에 따라 변경 예정 */}
+                <div className="page_main_search_area_rank">
+                    <p className="page_main_search_area_rank_title">추천검색어</p>
+                    <p className="page_main_search_area_rank_tag">1위</p>
+                    <p className="page_main_search_area_rank_tag">2위</p>
+                    <p className="page_main_search_area_rank_tag">3위</p>
+                </div>
+            </div>
+            <div className="page_main_search_area_result">
+                <div className="page_main_search_area_result_area">
+                    <p className="page_main_search_area_result_area_title"><span>공지사항</span></p>
+                    {/* TODO: 추후 검색키워드에 따라 변경 예정 */}
+                    <div className="page_main_search_area_result_area_subject">
+                        <p className="page_main_search_area_result_area_subject_title">2023년 수화통역사 시험자료</p>
+                        <p className="page_main_search_area_result_area_subject_date">2024년 3월 12일</p>
+                        <p className="page_main_search_area_result_area_subject_content">시험자료</p>
+                    </div>
+                    <div className="page_main_search_area_result_area_subject">
+                        <p className="page_main_search_area_result_area_subject_title">2022년 수화통역사 시험자료</p>
+                        <p className="page_main_search_area_result_area_subject_date">2023년 3월 12일</p>
+                        <p className="page_main_search_area_result_area_subject_content">시험자료</p>
+                    </div>
+                    <div className="page_main_search_area_result_area_subject">
+                        <p className="page_main_search_area_result_area_subject_title">2021년 수화통역사 시험자료</p>
+                        <p className="page_main_search_area_result_area_subject_date">2022년 3월 12일</p>
+                        <p className="page_main_search_area_result_area_subject_content">시험자료</p>
+                    </div>
+                </div>
+                <div className="page_main_search_area_result_area">
+                    <p className="page_main_search_area_result_area_title"><span>문의사항</span></p>
+                    <div className="page_main_search_area_result_area_subject">
+                        <p className="page_main_search_area_result_area_subject_title">제목</p>
+                        <p className="page_main_search_area_result_area_subject_date">날짜</p>
+                        <p className="page_main_search_area_result_area_subject_content">내용</p>
+                    </div>
+                    <div className="page_main_search_area_result_area_subject">
+                        <p className="page_main_search_area_result_area_subject_title">제목</p>
+                        <p className="page_main_search_area_result_area_subject_date">날짜</p>
+                        <p className="page_main_search_area_result_area_subject_content">내용</p>
+                    </div>
+                    <div className="page_main_search_area_result_area_subject">
+                        <p className="page_main_search_area_result_area_subject_title">제목</p>
+                        <p className="page_main_search_area_result_area_subject_date">날짜</p>
+                        <p className="page_main_search_area_result_area_subject_content">내용</p>
+                    </div>
+                </div>
+                <div className="page_main_search_area_result_area">
+                    <p className="page_main_search_area_result_area_title"><span>고객센터</span></p>
+                    <div className="page_main_search_area_result_area_subject">
+                    <p className="page_main_search_area_result_area_subject_title">제목</p>
+                        <p className="page_main_search_area_result_area_subject_date">날짜</p>
+                        <p className="page_main_search_area_result_area_subject_content">내용</p>
+                    </div>
+                    <div className="page_main_search_area_result_area_subject">
+                        <p className="page_main_search_area_result_area_subject_title">제목</p>
+                        <p className="page_main_search_area_result_area_subject_date">날짜</p>
+                        <p className="page_main_search_area_result_area_subject_content">내용</p>
+                    </div>
+                    <div className="page_main_search_area_result_area_subject">
+                        <p className="page_main_search_area_result_area_subject_title">제목</p>
+                        <p className="page_main_search_area_result_area_subject_date">날짜</p>
+                        <p className="page_main_search_area_result_area_subject_content">내용</p>
+                    </div>
+                </div>
+                <div className="page_main_search_area_result_area">
+                    <p className="page_main_search_area_result_area_title"><span>도움말</span></p>
+                    <div className="page_main_search_area_result_area_subject">
+                        <p className="page_main_search_area_result_area_subject_title">제목</p>
+                        <p className="page_main_search_area_result_area_subject_date">날짜</p>
+                        <p className="page_main_search_area_result_area_subject_content">내용</p>
+                    </div>
+                    <div className="page_main_search_area_result_area_subject">
+                        <p className="page_main_search_area_result_area_subject_title">제목</p>
+                        <p className="page_main_search_area_result_area_subject_date">날짜</p>
+                        <p className="page_main_search_area_result_area_subject_content">내용</p>
+                    </div>
+                    <div className="page_main_search_area_result_area_subject">
+                        <p className="page_main_search_area_result_area_subject_title">제목</p>
+                        <p className="page_main_search_area_result_area_subject_date">날짜</p>
+                        <p className="page_main_search_area_result_area_subject_content">내용</p>
+                    </div>
+                </div>
             </div>
         </div>
     );

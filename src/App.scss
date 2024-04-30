@@ -1,6 +1,7 @@
 .page {
   margin: 0;
   padding: 0;
+  font-family: 'SokchoBadaDotum', serif;
 
   $header_height: 9vh;
   $footer_height: 7vh;
@@ -88,6 +89,7 @@
           border: none;
           border-radius: 50px 50px 0 0;
           font-size: 1.2vw;
+          font-family: 'SokchoBadaDotum', serif;
 
           &:focus {
             outline: none;
@@ -263,7 +265,7 @@
         margin: 0 auto 3vh;
 
         &_button {
-          width: 20%;
+          width: 25%;
           height: $button_area;
           line-height: $button_area;
           background-color: #374c75;
@@ -272,7 +274,33 @@
           font-weight: bold;
           border-radius: 50px;
           float: left;
-          margin: 0 2.5%;
+          margin: 0 3.5%;
+
+          &_left {
+            width: 25%;
+            height: $button_area;
+            line-height: $button_area;
+            background-color: #374c75;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            float: left;
+            margin: 0 3.5% 0 5%;
+          }
+
+          &_right {
+            width: 25%;
+            height: $button_area;
+            line-height: $button_area;
+            background-color: #374c75;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            float: left;
+            margin: 0 5% 0 3.5%;
+          }
 
           &:hover {
             background-color: #0054aa;
@@ -296,6 +324,7 @@
         width: 100%;
         height: $subject_height;
         background-color: white;
+        border-radius: 20px;
 
         &_hidden {
           display: none;
@@ -308,6 +337,8 @@
           font-weight: bold;
           height: calc($subject_height * 0.15);
           line-height: calc($subject_height * 0.15);
+          background-color: #cccccc;
+          border-radius: 20px 20px 0 0;
         }
 
         &_info {
@@ -321,13 +352,15 @@
           border-radius: 20px;
 
           &_title {
-            width: 100%;
+            width: 90%;
+            margin: 2vh auto;
             text-align: center;
             height: calc($info_height*0.1);
             line-height: calc($info_height*0.1);
             font-size: 1.2vw;
             font-weight: bold;
             color: blue;
+            background-color: #cccccc;
           }
 
           &_subject {
@@ -346,6 +379,33 @@
               padding: 0 2%;
               border-radius: 20px;
 
+              &_large {
+                width: 95%;
+                height: calc($info_height*0.45);
+                background-color: white;
+                margin: 1vh auto;
+                padding: 0 2%;
+                border-radius: 20px;
+              }
+
+              &_middle {
+                width: 95%;
+                height: calc($info_height*0.32);
+                background-color: white;
+                margin: 1vh auto;
+                padding: 0 2%;
+                border-radius: 20px;
+              }
+
+              &_short {
+                width: 95%;
+                height: calc($info_height*0.18);
+                background-color: white;
+                margin: 1vh auto;
+                padding: 0 2%;
+                border-radius: 20px;
+              }
+
               &_title {
                 width: 96%;
                 border-bottom: 1px solid gray;
@@ -357,11 +417,292 @@
                 line-height: calc($info_height*0.065);
                 width: 94%;
                 margin: 0 3%;
+
+
               }
             }
           }
         }
       }
     }
+
+    &_search_area {
+      $search_area_height: calc(100vh - $header_height - $footer_height - 6vh);
+
+      width: 95%;
+      height: $search_area_height;
+      margin: 0 auto;
+
+      $param_height: calc($search_area_height * 0.07);
+      $rank_height: calc($search_area_height * 0.03);
+      $result_height: calc($search_area_height - $param_height - $rank_height - 2vh);
+
+      &_param {
+        margin: 0 auto;
+        width: 40%;
+        height: $param_height;
+        background-color: white;
+        border-radius: 50px;
+        padding: 0 1vw;
+
+        &_input {
+          float: left;
+          border: none;
+          width: 88%;
+          height: $param_height;
+          line-height: $param_height;
+          margin: 0 0 0 0.5vw;
+          padding: 0;
+          font-family: 'SokchoBadaDotum';
+          font-size: 1vw;
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        &_icon {
+          height: calc($param_height * 0.8);
+          margin: calc($param_height * 0.1) 1vw;
+          width: 5%;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
+      &_rank {
+        margin: 0.5vh auto 1vh;
+        width: 40%;
+        height: $rank_height;
+        line-height: $rank_height;
+
+        &_title {
+          float: left;
+          width: 20%;
+          margin: 0 2%;
+          text-align: center;
+          font-size: 0.8vw;
+          color: blue;
+          border-right: 4px solid black;
+        }
+
+        &_tag {
+          float: left;
+          width: 20%;
+          margin: 0 2.5%;
+          text-align: center;
+          font-size: 0.7vw;
+          
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
+      &_result {
+        width: 100%;
+        height: $result_height;
+
+        &_area {
+          width: 45%;
+          height: calc($result_height * 0.48);
+          background-color: white;
+          float: left;
+          margin: 0 2.5% 2vh;
+          border-radius: 20px;
+
+          &_title {
+            width: 95%;
+            margin: 2vh auto;
+            font-size: 1.3vw;
+            padding: 1vh 0;
+            color: blue;
+            border-bottom: 2px solid #cccccc;
+
+            span {
+              &:hover {
+                cursor: pointer;
+              }
+            }
+
+          }
+
+          &_subject {
+            $subject_height: calc(calc($result_height / 4) / 3);
+            margin: 2vh auto;
+            width: 93%;
+            height: $subject_height;
+
+            &_title {
+              float: left;
+              width: 50%;
+              height: calc($subject_height / 2);
+              line-height: calc($subject_height / 2);
+              font-size: 1vw;
+              color: blue;
+              margin: 0 0 1vh;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+
+            &_date {
+              float: left;
+              width: 50%;
+              height: calc($subject_height / 2);
+              line-height: calc($subject_height / 2);
+              margin: 0 0 1vh;
+              font-size: 0.7vw;
+              color: gray;
+            }
+
+            &_content {
+              width: 100%;
+              float: left;
+              height: calc($subject_height / 2);
+              line-height: calc($subject_height / 2);
+              margin: 0;
+              font-size: 1vw;
+            }
+          }
+        }
+      }
+    }
+
+    &_login_area {
+      $login_area_height: calc(100vh - $header_height - $footer_height - 6vh);
+
+      width: 50%;
+      height: $login_area_height;
+      margin: 0 auto;
+      background-color: #d2e9ef;
+      border-radius: 50px;
+
+      &_logo {
+        width: 50%;
+        height: calc($login_area_height * 0.16);
+        margin: 0 auto 3vh;
+        text-align: center;
+        padding: 8vh 0 0;
+
+        &_file {
+          height: calc($login_area_height * 0.16);
+          width: 100%;
+        }
+      }
+
+      &_subject {
+        $login_subject_height: calc($login_area_height * 0.15);
+        width: 50%;
+        height: $login_subject_height;
+        margin: 2vh auto;
+        text-align: center;
+
+        &_title {
+          font-size: 1.2vw;
+          margin: 0;
+          height: calc($login_subject_height * 0.5);
+          line-height: calc($login_subject_height * 0.5);
+          color: blue;
+        }
+
+        &_password {
+          width: 100%;
+          margin: 0 auto;
+          border-radius: 50px;
+          background-color: white;
+          height: calc($login_subject_height * 0.5);
+          line-height: calc($login_subject_height * 0.5);
+
+          &_input {
+            float: left;
+            width: 70%;
+            padding: 1.5vh 1.5vw;
+            border-radius: 50px;
+            border: none;
+            font-size: 0.8vw;
+            height: calc(calc($login_subject_height * 0.5) - 3vh);
+            line-height: calc(calc($login_subject_height * 0.5) - 3vh);
+
+            &:focus{
+              outline: none;
+            }
+          }
+
+          &_file {
+            width: 10%;
+            margin: 0;
+            height: calc($login_subject_height * 0.5);
+            line-height: calc($login_subject_height * 0.5);
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+
+        &_input {
+          width: calc(100% - 3vw);
+          padding: 1.5vh 1.5vw;
+          border-radius: 50px;
+          border: none;
+          font-size: 0.8vw;
+          height: calc(calc($login_subject_height * 0.5) - 3vh);
+          line-height: calc(calc($login_subject_height * 0.5) - 3vh);
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+      &_login_button {
+        width: 50%;
+        margin: 5vh auto 0;
+        text-align: center;
+        height: calc($login_area_height * 0.075);
+        line-height: calc($login_area_height * 0.075);
+        background-color: #374c75;
+        color: white;
+        font-size: 1vw;
+        border-radius: 50px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      &_other_button {
+        width: 35%;
+        margin: 0.4vh auto 0;
+        height: calc($login_area_height * 0.05);
+        line-height: calc($login_area_height * 0.05);
+        text-align: center;
+        color: #5E5E5E;
+
+        &_text {
+          width: 40%;
+          float: left;
+          height: calc($login_area_height * 0.05);
+          line-height: calc($login_area_height * 0.05);
+          margin: 0 5%;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
   }
+}
+
+
+@font-face {
+  font-family: 'SokchoBadaDotum';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_1@1.0/SokchoBadaDotum.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }

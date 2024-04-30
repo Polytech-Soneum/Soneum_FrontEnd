@@ -31,7 +31,10 @@ function SignTranslator() {
             </div>
             <div className="page_main_text_area">
                 <div className="page_main_text_area_text">
-                    <textarea className="page_main_text_area_text_input"></textarea>
+                    <textarea
+                        className="page_main_text_area_text_input"
+                        placeholder="번역할 수화를 녹화해주세요"
+                    />
                 </div>
                 <div className="page_main_text_area_button">
                     <div className="page_main_text_area_button_toggle">

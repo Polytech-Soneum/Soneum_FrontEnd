@@ -7,7 +7,7 @@ function Header() {
     const navigate = useNavigate();
     const search = () => {
         const keyword = document.getElementsByClassName('page_header_search_input')[0].value;
-        navigate('/search?'+keyword);
+        navigate('/search?keyword='+keyword);
     }
     return (
         <div className="page_header">
@@ -33,6 +33,9 @@ function Header() {
             <div className="page_header_search">
                 <input type="text" className="page_header_search_input"/>
                 <img src={Search} className="page_header_search_icon" alt="검색" onClick={search}/>
+            </div>
+            <div className="page_header_login">
+                <Link to={"/login"}><p className="page_header_login_text">로그인</p></Link><p className="page_header_login_text">회원가입</p>
             </div>
         </div>
     );
