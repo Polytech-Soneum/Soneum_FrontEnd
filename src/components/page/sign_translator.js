@@ -3,7 +3,8 @@ import Speaker from "../../assets/icons/Speaker.svg";
 import SoneumWhiteLogo from "../../assets/icons/Soneum_logo_white.svg";
 import MaleSymbol from "../../assets/icons/MaleSymbol.svg";
 import FemaleSymbol from "../../assets/icons/FemaleSymbol.svg";
-import Microphone from "../../assets/icons/Microphone_black.svg";
+import Webcam from "react-webcam";
+import { useState, useRef, useEffect } from 'react';
 
 function SignTranslator() {
     const genderToggle = () => {

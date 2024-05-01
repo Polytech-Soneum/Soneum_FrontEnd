@@ -1,15 +1,49 @@
 import SearchIcon from '../../assets/images/search.png';
-import {useLocation, useParams} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import Swal from 'sweetalert2';
 
 function SearchResult() {
+    const navigate = useNavigate();
+    const search = () => {
+        const input_keyword = document.getElementsByClassName('page_main_search_area_param_input')[0].value;
+
+        if(input_keyword === '') {
+            Swal.fire({
+                icon: 'warning',
+                text: '검색어가 입력되지 않았습니다',
+                confirmButtonText: '확인',
+            });
+        } else {
+            navigate('/search?keyword='+input_keyword);
+        }
+    }
+
     const params = useLocation();
+    const keyword = new URLSearchParams(params.search).get('keyword');
+
+    const [searchValue, setSearchValue] = useState(keyword);
+
+    useEffect(() => {
+        setSearchValue(keyword);
+    }, [keyword]);
 
     return (
         <div className="page_main_search_area">
             <div>
                 <div className="page_main_search_area_param">
-                    <input type="text" className="page_main_search_area_param_input" value={new URLSearchParams(params.search).get('keyword')}/>
-                    <img src={SearchIcon} className="page_main_search_area_param_icon" alt="검색"/>
+                    <input
+                        type="text"
+                        className="page_main_search_area_param_input"
+                        value={searchValue}
+                        onChange={(event) => setSearchValue(event.target.value)}
+                        onKeyPress={(event) => {
+                            if(event.key === 'Enter') {
+                                search();
+                            }
+                        }}
+                    />
+                    <img src={SearchIcon} className="page_main_search_area_param_icon" alt="검색" onClick={search}/>
                 </div>
                 {/* TODO: 추후 검색기록량에 따라 변경 예정 */}
                 <div className="page_main_search_area_rank">
