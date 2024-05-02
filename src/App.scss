@@ -1,7 +1,7 @@
 .page {
   margin: 0;
   padding: 0;
-  font-family: 'SokchoBadaDotum', serif;
+  font-family: 'WavvePADO-Regular' , serif;
 
   $header_height: 9vh;
   $footer_height: 7vh;
@@ -89,7 +89,7 @@
           border: none;
           border-radius: 50px 50px 0 0;
           font-size: 1.2vw;
-          font-family: 'SokchoBadaDotum', serif;
+          font-family: 'WavvePADO-Regular' , serif;
 
           &:focus {
             outline: none;
@@ -213,6 +213,11 @@
         text-align: center;
         background-color: #374c75;
 
+        &_input {
+          border-radius: 20px 20px 0 0;
+          font-family: 'WavvePADO-Regular' , serif;
+        }
+
         &_logo {
           margin: calc(calc($other_area_height * 0.85) * 0.35) auto;
           height: 15vh;
@@ -246,6 +251,7 @@
         width: 90%;
         margin: 0 auto;
         height: calc($other_area_height * 0.1);
+        line-height: calc($other_area_height * 0.1);
         background-color: #cccccc;
         opacity: 0.5;
         border-radius: 20px;
@@ -453,8 +459,8 @@
           line-height: $param_height;
           margin: 0 0 0 0.5vw;
           padding: 0;
-          font-family: 'SokchoBadaDotum';
           font-size: 1vw;
+          font-family: 'WavvePADO-Regular' , serif;
 
           &:focus {
             outline: none;
@@ -626,6 +632,7 @@
             font-size: 0.8vw;
             height: calc(calc($login_subject_height * 0.5) - 3vh);
             line-height: calc(calc($login_subject_height * 0.5) - 3vh);
+            font-family: 'WavvePADO-Regular' , serif;
 
             &:focus{
               outline: none;
@@ -652,6 +659,7 @@
           font-size: 0.8vw;
           height: calc(calc($login_subject_height * 0.5) - 3vh);
           line-height: calc(calc($login_subject_height * 0.5) - 3vh);
+          font-family: 'WavvePADO-Regular' , serif;
 
           &:focus {
             outline: none;
@@ -696,13 +704,160 @@
         }
       }
     }
+
+    &_register_area {
+      $register_area_height: calc(100vh - $header_height - $footer_height - 6vh);
+
+      width: 90%;
+      height: $register_area_height;
+      margin: 0 auto;
+      background-color: #d2e9ef;
+
+      &_subject_area {
+        width: 50%;
+        height: $register_area_height;
+        margin: 0 auto;
+        background-color: white;
+
+        &_subject {
+          $register_area_subject_height: calc($register_area_height * 0.08);
+          height: $register_area_subject_height;
+          width: 100%;
+          padding: 0;
+          margin: 0;
+
+          &_warning {
+            width: calc(100% - 4px);
+            height: $register_area_subject_height;
+            line-height: $register_area_subject_height;
+            padding: 0;
+            margin-top: -2px;
+            border: 2px solid red;
+          }
+
+          &_file {
+            width: 15%;
+            float: left;
+            height: $register_area_subject_height;
+            line-height: $register_area_subject_height;
+            background-color: #cccccc;
+          }
+
+          &_input {
+            width: calc(85% - 1vw);
+            float: left;
+            padding: 0 0.5vw;
+            margin: 0;
+            border: none;
+            height: $register_area_subject_height;
+            line-height: $register_area_subject_height;
+            font-size: 1vw;
+            background-color: #FFF1DD;
+            font-family: 'WavvePADO-Regular' , serif;
+          }
+        }
+      }
+
+      &_subject {
+        $register_area_subject_height: calc($register_area_height * 0.08);
+
+        width: 50%;
+        height: $register_area_subject_height;
+        line-height: $register_area_subject_height;
+        padding: 0;
+        margin: 0;
+
+        &_warning {
+          width: 50%;
+          height: $register_area_subject_height;
+          line-height: $register_area_subject_height;
+          padding: 0;
+          margin-top: -2px;
+          border: 2px solid red;
+        }
+
+        &_file {
+          height: $register_area_subject_height;
+          line-height: $register_area_subject_height;
+          float: left;
+          width: 15%;
+          text-align: center;
+          margin: 0;
+          padding: 0;
+          font-size: 1vw;
+          background-color: #B7B5B5;
+        }
+
+
+        &_input {
+          height: $register_area_subject_height;
+          line-height: $register_area_subject_height;
+          float: left;
+          width: calc(85% - 1vw);
+          margin: 0;
+          padding: 0 0.5vw;
+          border: none;
+          font-size: 1vw;
+          font-family: 'WavvePADO-Regular' , serif;
+
+          &:focus {
+            outline: none;
+          }
+
+          &_text {
+            width: 5%;
+            font-size: 1vw;
+            height: $register_area_subject_height;
+            line-height: $register_area_subject_height;
+            float: left;
+            margin: 0;
+          }
+
+          &_password {
+            height: $register_area_subject_height;
+            line-height: $register_area_subject_height;
+            border: none;
+            margin: 0;
+            padding: 0 0.5vw;
+            width: calc(80% - 1vw);
+            float: left;
+            font-size: 1vw;
+
+            &:focus {
+              outline: none;
+            }
+
+            &_file {
+              height: $register_area_subject_height * 0.7;
+              line-height: $register_area_subject_height * 0.7;
+              padding: calc($register_area_subject_height * 0.15) 0;
+              width: 5%;
+              margin: 0;
+            }
+          }
+
+          &_email {
+            height: $register_area_subject_height;
+            line-height: $register_area_subject_height;
+            border: none;
+            margin: 0 1.5%;
+            padding: 0 0.5vw;
+            width: calc(50% - 1vw);
+            float: left;
+            font-size: 1vw;
+            border-radius: 50px;
+          }
+        }
+
+        &_check_button {
+          margin: 0;
+          float: left;
+          width: 12%;
+          text-align: center;
+          height: $register_area_subject_height;
+          line-height: $register_area_subject_height;
+        }
+      }
+    }
   }
-}
-
-
-@font-face {
-  font-family: 'SokchoBadaDotum';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_1@1.0/SokchoBadaDotum.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
 }

@@ -2,6 +2,7 @@ import SoneumLogo from '../../assets/icons/Soneum_logo.svg';
 import HideSymbol from '../../assets/images/hide.png';
 import SeekSymbol from '../../assets/images/seek.png';
 import {useState} from "react";
+import {Link} from "react-router-dom";
 
 function Login() {
     const [isHide, setHide] = useState(true);
@@ -33,9 +34,7 @@ function Login() {
                 <p className="page_main_login_area_other_button_text">아이디 찾기</p>
                 <p className="page_main_login_area_other_button_text">비밀번호 찾기</p>
             </div>
-            <div className="page_main_login_area_other_button">
-                회원가입
-            </div>
+            <Link to={"/register"} style={{textDecoration: "none"}}> <div className="page_main_login_area_other_button">회원가입</div></Link>
         </div>
     );
 }

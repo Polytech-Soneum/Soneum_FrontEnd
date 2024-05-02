@@ -1,8 +1,7 @@
 import './header.scss';
 import SoneumWhiteLogo from "../../assets/icons/Soneum_logo_white.svg";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Search from "../../assets/images/search.png";
-import {useEffect, useState} from "react";
 import Swal from "sweetalert2";
 
 function Header() {
@@ -20,15 +19,6 @@ function Header() {
             navigate('/search?keyword='+input_keyword);
         }
     }
-
-    const params = useLocation();
-    const keyword = new URLSearchParams(params.search).get('keyword');
-    const [searchValue, setSearchValue] = useState(keyword);
-
-    useEffect(() => {
-        setSearchValue(keyword);
-    }, [keyword]);
-
     return (
         <div className="page_header">
             <Link to={"/"}><img src={SoneumWhiteLogo} alt="손이음 로고" className="page_header_logo"/></Link>
@@ -54,8 +44,6 @@ function Header() {
                 <input
                     type="text"
                     className="page_header_search_input"
-                    value={searchValue}
-                    onChange={(event) => setSearchValue(event.target.value)}
                     onKeyPress={(event) => {
                        if(event.key === 'Enter') {
                            search();
@@ -64,7 +52,7 @@ function Header() {
                 <img src={Search} className="page_header_search_icon" alt="검색" onClick={search}/>
             </div>
             <div className="page_header_login">
-                <Link to={"/login"}><p className="page_header_login_text">로그인</p></Link><p className="page_header_login_text">회원가입</p>
+                <Link to={"/login"}><p className="page_header_login_text">로그인</p></Link><Link to={"/register"}><p className="page_header_login_text">회원가입</p></Link>
             </div>
         </div>
     );

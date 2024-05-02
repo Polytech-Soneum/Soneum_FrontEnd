@@ -8,9 +8,9 @@ import Swal from "sweetalert2";
 function VoiceTranslator() {
     const { transcript, listening: isListening, resetTranscript } = useSpeechRecognition();
     const [ textAreaValue, setTextAreaValue ] = useState('');
-    const [translateResult, setTranslateResult]= useState('');
+    const [ translateResult, setTranslateResult ]= useState('');
 
-    const voiceTranslate = async() => {
+    const voiceTranslate = () => {
         if(textAreaValue === '') {
             Swal.fire({
                 icon: 'warning',
@@ -18,11 +18,14 @@ function VoiceTranslator() {
                 confirmButtonText: '확인',
             });
         } else {
-            await axios.get('/translate/voice', {params: {text: textAreaValue}});
+            axios.get('/translate/voice', {params: {text: textAreaValue}}).then((result) => setTranslateResult(result.data));
         }
     }
 
-    useEffect(() => {setTextAreaValue(transcript)}, [transcript]);
+    useEffect(() => {
+        setTextAreaValue(transcript)
+    }, [transcript]);
+
     return (
         <>
             <div className="page_main_text_area">
@@ -43,16 +46,27 @@ function VoiceTranslator() {
                             className="page_main_text_area_button_image_file"
                             alt="마이크"
                             onClick={() => {
-                                if(!isListening) {
-                                    resetTranscript();
-                                    SpeechRecognition.startListening({continuous: true, language: 'ko'});
-                                } else {
-                                    SpeechRecognition.stopListening();
-                                }
+                                navigator.mediaDevices.getUserMedia({audio: true}).then((result) => {
+                                    if(result.active) {
+                                        if(!isListening) {
+                                            resetTranscript();
+                                            SpeechRecognition.startListening({continuous: true, language: 'ko'});
+                                        } else {
+                                            SpeechRecognition.stopListening();
+                                        }
+                                    }
+                                }).catch((error) => {
+                                    if(error.toString().includes('Requested ')) {
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            text: '입력을 위해 연결된 마이크가 없습니다',
+                                            confirmButtonText: '확인',
+                                        });
+                                    }
+                                });
                             }}
                         />
                     </div>
-                    {/* TODO: 추후 백엔드 전송 기능 개발 예정 */}
                     <div className="page_main_text_area_button_translate" onClick={voiceTranslate}>
                         번역하기
                     </div>
@@ -62,7 +76,7 @@ function VoiceTranslator() {
                 {/*TODO: 추후 Unity 출력 부분 생성 예정*/}
                 <div className="page_main_other_area_context">
                     {translateResult}
-                    {/*TODO: 추후 자막 출력 기능 생성 예정*/}
+                    {/*TODO: 백엔드 전송 데이터를 통해 아바타 출력 속도에 따른 텍스트 출력 예정*/}
                 </div>
             </div>
         </>
