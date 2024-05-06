@@ -6,12 +6,13 @@ import MaleSymbol from "../../assets/icons/MaleSymbol.svg";
 import FemaleSymbol from "../../assets/icons/FemaleSymbol.svg";
 import Swal from "sweetalert2";
 import axios from "axios";
-import React, {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import Webcam from "react-webcam";
 
 function SignTranslator() {
+    const [textAreaValue, setTextAreaValue] = useState('');
     const [isMale, setGender] = useState(true);
-    const [isRecording, setRecording] = useState(false);
+
     const genderToggle = () => {
         const className = document.getElementsByClassName("page_main_text_area_button_toggle_gender_circle")[0].classList;
 
@@ -42,51 +43,101 @@ function SignTranslator() {
         }
     }
 
-    const [videoAreaWidth, setVideoAreaWidth] = useState(0);
-    const [videoAreaHeight, setVideoAreaHeight] = useState(0);
+    const webcamRef = useRef(null);
+    const mediaRecorderRef = useRef(null);
+    const [isRecording, setRecording] = useState(false);
+    const [recordedChunks, setRecordedChunks] = useState([]);
+    const [deviceID, setDeviceID] = useState();
 
-    const testRef = React.createRef();
+    const CameraSelected = () => {
+        const selector = document.getElementById('deviceSelector');
+        const selectValue = selector.options[selector.selectedIndex].value;
+
+        setDeviceID(selectValue);
+    }
 
     useEffect(() => {
-        setVideoAreaWidth(testRef.current?.offsetWidth);
-        setVideoAreaHeight(testRef.current?.offsetHeight);
-    }, []);
+        const selector = document.getElementById('deviceSelector');
 
+        while (selector.hasChildNodes())
+        {
+            selector.removeChild(selector.firstChild);
+        }
+
+        navigator.mediaDevices.enumerateDevices()
+            .then((devices) => {
+                devices.forEach((device) => {
+                    if(device.kind==='videoinput') {
+                        const option = document.createElement('option');
+                        option.value = device.deviceId;
+                        option.text = device.label;
+                        document.getElementById('deviceSelector').appendChild(option);
+                    }
+                });
+            })
+            .catch((error) => console.log(error));
+
+        if(!isRecording) {
+            if(recordedChunks.length) {
+                const blob  = new Blob(recordedChunks, {type: 'video/webm'});
+                setRecordedChunks([]);
+
+                console.log(blob);
+            }
+        }
+    }, [recordedChunks]);
     return (
         <>
             <div className="page_main_other_area">
-                <div className="page_main_other_area_video" ref={testRef}>
-                    {/* TODO: 비디오 녹화 기능 추가 예정 - 비디오 녹화시 로고는 안보이게 설정 */}
-                    {isRecording &&
-                        <Webcam
-                            audio={false}
-                            height={videoAreaHeight}
-                            width={videoAreaWidth}
-                            mirrored={true}
-                            videoConstraints={{
-                                facingMode: "user"
-                            }}
-                            className="page_main_other_area_video_input"
-                        />
+                <div className="page_main_other_area_video">
+                    <Webcam
+                        audio={false}
+                        mirrored={true}
+                        imageSmoothing={true}
+                        ref={webcamRef}
+                        videoConstraints={{deviceId: deviceID}}
+                        className="page_main_other_area_video_input"
+                    />
+                    {!isRecording &&
+                        (
+                            <div className="page_main_other_area_video_hider">
+                                <img src={SoneumWhiteLogo} className="page_main_other_area_video_hider_logo" alt="로고"/>
+                            </div>
+                        )
                     }
-                    {!isRecording && <img src={SoneumWhiteLogo} className="page_main_other_area_video_logo" alt="로고"/>}
                 </div>
                 <div className="page_main_other_area_button">
                     <div className="page_main_other_area_button_image">
-                        {/* TODO: 비디오 녹화 시에는 RecordStop으로 src 변경 예정 - 변수 사용하여 현재 상황 확인 */}
-                        <img src={!isRecording ? RecordStart : RecordStop} className="page_main_other_area_button_image_file" alt="녹화버튼" onClick={() =>{
-                            navigator.mediaDevices.getUserMedia({video: true}).then((result) => {
-                                setRecording(!isRecording);
-                            }).catch((error) => {
-                                if(error.toString().includes('Requested ')) {
-                                    Swal.fire({
-                                        icon: 'warning',
-                                        text: '녹화를 위해 연결된 카메라가 없습니다',
-                                        confirmButtonText: '확인',
-                                    });
+                        <img
+                            src={isRecording ? RecordStop : RecordStart}
+                            alt={isRecording ? '녹화중지' : '녹화시작'}
+                            className="page_main_other_area_button_image_file"
+                            onClick={() => {
+                                if(isRecording) {
+                                    if (mediaRecorderRef.current) {
+                                        mediaRecorderRef.current.stop();
+                                        setRecording(false);
+                                        setTextAreaValue('');
+                                    }
+                                } else {
+                                    if(webcamRef.current && webcamRef.current.stream) {
+                                        setRecording(true);
+                                        mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {mimeType: 'video/webm'});
+                                        mediaRecorderRef.current.addEventListener(
+                                            'dataavailable',
+                                            ({data}) =>{
+                                                if (data.size > 0) {
+                                                    setRecordedChunks((prev) => prev.concat(data));
+                                                }
+                                            }
+                                        );
+                                        mediaRecorderRef.current.start();
+                                    }
+                                    setTextAreaValue('번역 진행중');
                                 }
-                            });
-                        }}/>
+                            }}
+                        />
+                        <select className="page_main_other_area_button_selector" id="deviceSelector" onChange={CameraSelected}/>
                     </div>
                 </div>
             </div>
@@ -95,6 +146,10 @@ function SignTranslator() {
                     <textarea
                         className="page_main_text_area_text_input"
                         placeholder="번역할 수어를 녹화해주세요"
+                        spellCheck={false}
+                        autoComplete={false}
+                        value={textAreaValue}
+                        onChange={({target: {value}}) => setTextAreaValue(value)}
                     />
                 </div>
                 <div className="page_main_text_area_button">

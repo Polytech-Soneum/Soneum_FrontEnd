@@ -45,9 +45,9 @@ function Header() {
                     type="text"
                     className="page_header_search_input"
                     onKeyPress={(event) => {
-                       if(event.key === 'Enter') {
-                           search();
-                       }
+                        if(event.key === 'Enter') {
+                            search();
+                        }
                     }}/>
                 <img src={Search} className="page_header_search_icon" alt="검색" onClick={search}/>
             </div>
