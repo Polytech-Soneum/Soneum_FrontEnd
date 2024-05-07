@@ -1,117 +1,133 @@
-// import React, { useRef, useEffect, useState } from 'react';
-// import * as faceapi from 'face-api.js';
-// import Webcam from 'react-webcam';
+// test.js
+
+import React, { useRef, useEffect, useState } from 'react';
+import Webcam from 'react-webcam';
+import cv from 'opencv.js';
+
+const Test = () => {
+    const webcamRef = useRef(null);
+    const [distance, setDistance] = useState(null);
+    const [faceCascade, setFaceCascade] = useState(null);
+
+    useEffect(() => {
+        const loadFaceCascade = async () => {
+            const classifier = new cv.CascadeClassifier();
+            await classifier.load('haarcascade_frontalface_default.xml');
+            setFaceCascade(classifier);
+        };
+
+        loadFaceCascade();
+
+        return () => {
+            if (faceCascade) {
+                faceCascade.delete();
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        const measureDistance = () => {
+            const videoElement = webcamRef.current.video;
+            if (!videoElement) return; // Ensure video element is available
+
+            const frame = new cv.Mat(videoElement.height, videoElement.width, cv.CV_8UC4);
+            const gray = new cv.Mat();
+            frame.data.set(videoElement);
+
+            cv.cvtColor(frame, gray, cv.COLOR_RGBA2GRAY);
+            const faces = new cv.RectVector();
+            faceCascade.detectMultiScale(gray, faces);
+
+            if (faces.size() > 0) {
+                const face = faces.get(0);
+                const faceWidth = face.width;
+                const focalLength = 706; // Adjust this value based on your camera setup and calibration
+                const averageEyeWidth = 6.3; // Average eye width in centimeters
+                const measuredDistance = (averageEyeWidth * focalLength) / faceWidth;
+                setDistance(measuredDistance.toFixed(2));
+            } else {
+                setDistance(null);
+            }
+
+            frame.delete();
+            gray.delete();
+            faces.delete();
+        };
+
+        const intervalId = setInterval(measureDistance, 1000); // Measure distance every 1 second
+
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, [faceCascade]);
+
+    return (
+        <div>
+            <Webcam
+                ref={webcamRef}
+                screenshotFormat="image/jpeg"
+            />
+            <p>Distance from Camera: {distance ? `${distance} cm` : 'N/A'}</p>
+        </div>
+    );
+};
+
+export default Test;
+
+//
+//
+// /*
+// import Webcam from "react-webcam";
+// import {useEffect, useState} from "react";
 //
 // function Test() {
-//     const webcamRef = useRef(null);
-//     const [distance, setDistance] = useState(null);
+//     const [deviceId, setDeviceId] = useState();
+//     const deviceArray = [];
+//
+//     const deviceSelector = () => {
+//         alert('select');
+//     }
 //
 //     useEffect(() => {
-//         async function loadModels() {
-//             await Promise.all([
-//                 faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
-//                 faceapi.nets.faceLandmark68Net.loadFromUri('/models')
-//             ]);
+//         const selector = document.getElementById('deviceSelector');
+//
+//         console.log(selector.firstChild);
+//
+//         while (selector.hasChildNodes())
+//         {
+//             selector.removeChild(selector.firstChild);
 //         }
 //
-//         loadModels();
-//     }, []);
+//         navigator.mediaDevices.enumerateDevices()
+//             .then((devices) => {
+//                 devices.forEach((device) => {
+//                     if(device.kind==='videoinput') {
+//                         const option = document.createElement('option');
+//                         option.innerText = device.label;
+//                         option.id = device.deviceId;
+//                         option.setAttribute('class', 'camera_selector_option');
 //
-//     const calculateDistance = (face) => {
-//         const pointLeft = face.landmarks.getLeftEye()[0];
-//         const pointRight = face.landmarks.getRightEye()[0];
-//         const w = Math.abs(pointLeft.x - pointRight.x);
-//         const W = 6.3; // 평균 눈의 너비
-//         const f = 706; // 픽셀 값을 실제 거리로 변환하기 위한 상수
-//         const d = (W * f) / w;
-//         return Math.round(d); // 소숫점 이하 자리 버림
-//     };
+//                         deviceArray.push([device.deviceId, device.label]);
+//                         document.getElementById('deviceSelector').appendChild(option);
+//                     }
+//                 });
+//             })
+//             .catch((error) => console.log(error));
 //
-//     const detectFace = async () => {
-//         if (!webcamRef.current || !webcamRef.current.video) return;
-//
-//         const video = webcamRef.current.video;
-//         const options = new faceapi.TinyFaceDetectorOptions();
-//         const result = await faceapi.detectSingleFace(video, options).withFaceLandmarks();
-//
-//         if (result) {
-//             const d = calculateDistance(result);
-//             setDistance(d);
-//         } else {
-//             setDistance(null);
-//         }
-//     };
-//
-//     useEffect(() => {
-//         const intervalId = setInterval(() => {
-//             detectFace();
-//         }, 500);
-//
-//         return () => clearInterval(intervalId);
+//         console.log(deviceArray);
 //     }, []);
 //
 //     return (
 //         <div>
-//             <Webcam
-//                 audio={false}
-//                 ref={webcamRef}
-//                 width={640}
-//                 height={480}
-//                 screenshotFormat="image/jpeg"
-//                 videoConstraints={{ facingMode: 'user' }}
-//             />
-//             {distance !== null && <p>Depth: {distance} cm</p>}
+//             <Webcam videoConstraints={{deviceId: deviceId}}/>
+//             <select className='camera_selector' id='deviceSelector' onChange={
+//                 () => {
+//                     const selector = document.getElementById('deviceSelector');
+//                     setDeviceId(selector.options[selector.selectedIndex].value);
+//                 }
+//             }/>
 //         </div>
 //     );
 // }
 //
-// export default Test;
-
-import Webcam from "react-webcam";
-import {useEffect, useState} from "react";
-
-function Test() {
-    const [deviceId, setDeviceId] = useState();
-    const deviceArray = [];
-
-    const deviceSelector = () => {
-        
-    }
-
-    useEffect(() => {
-        const selector = document.getElementById('deviceSelector');
-
-        while (selector.hasChildNodes())
-        {
-            selector.removeChild(selector.firstChild);
-        }
-
-        navigator.mediaDevices.enumerateDevices()
-            .then((devices) => {
-                devices.forEach((device) => {
-                    if(device.kind==='videoinput') {
-                        const option = document.createElement('div');
-                        option.innerText = device.label;
-                        option.setAttribute('class', 'camera_selector_option');
-                        option.setAttribute('onclick', deviceSelector);
-
-                        deviceArray.push([device.deviceId, device.label]);
-                        document.getElementById('deviceSelector').appendChild(option);
-                    }
-                });
-            })
-            .catch((error) => console.log(error));
-
-        console.log(deviceArray);
-    }, []);
-
-    return (
-        <div>
-            <Webcam />
-            <div className='camera_selector' id='deviceSelector' onClick={() => console.log('onclick')}>
-            </div>
-        </div>
-    );
-}
-
-export default Test;
+// export default Test;*/

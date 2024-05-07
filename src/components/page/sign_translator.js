@@ -48,6 +48,10 @@ function SignTranslator() {
     const [isRecording, setRecording] = useState(false);
     const [recordedChunks, setRecordedChunks] = useState([]);
     const [deviceID, setDeviceID] = useState();
+    const [videoAreaSize, setVideoAreaSize] = useState({
+        width: undefined,
+        height: undefined,
+    });
 
     const CameraSelected = () => {
         const selector = document.getElementById('deviceSelector');
@@ -56,7 +60,18 @@ function SignTranslator() {
         setDeviceID(selectValue);
     }
 
+    const handleResize = () => {
+        const videoArea = document.getElementById('video_area');
+
+        setVideoAreaSize({
+            width: videoArea.getBoundingClientRect().width,
+            height: videoArea.getBoundingClientRect().height,
+        })
+    }
+
     useEffect(() => {
+        window.addEventListener('resize', handleResize);
+
         const selector = document.getElementById('deviceSelector');
 
         while (selector.hasChildNodes())
@@ -85,16 +100,21 @@ function SignTranslator() {
                 console.log(blob);
             }
         }
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
     }, [recordedChunks]);
     return (
         <>
             <div className="page_main_other_area">
-                <div className="page_main_other_area_video">
+                <div className="page_main_other_area_video" id='video_area'>
                     <Webcam
                         audio={false}
                         mirrored={true}
                         imageSmoothing={true}
                         ref={webcamRef}
+                        height={videoAreaSize.height}
                         videoConstraints={{deviceId: deviceID}}
                         className="page_main_other_area_video_input"
                     />
@@ -147,7 +167,6 @@ function SignTranslator() {
                         className="page_main_text_area_text_input"
                         placeholder="번역할 수어를 녹화해주세요"
                         spellCheck={false}
-                        autoComplete={false}
                         value={textAreaValue}
                         onChange={({target: {value}}) => setTextAreaValue(value)}
                     />

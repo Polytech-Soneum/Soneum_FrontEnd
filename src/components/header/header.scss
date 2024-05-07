@@ -73,10 +73,10 @@ $menu_height: calc($header_height * 0.6);
       font-family: 'WavvePADO-Regular' , 'serif';
       float: left;
       width: 87%;
-      margin: 0 1%;
+      margin: 0.5% 1%;
       padding: 0;
-      height: calc($header_height * 0.5);
-      line-height: calc($header_height * 0.5);
+      height: calc(calc($header_height * 0.47) - 1%);
+      line-height: calc(calc($header_height * 0.47) - 1%);
       border: none;
       font-size: 1vw;
 
@@ -116,6 +116,7 @@ $menu_height: calc($header_height * 0.6);
       margin: calc($login_margin_height / 2) 0;
       font-weight: bold;
       color: white;
+      font-size: 1vw;
 
       &:hover {
         background-color: #0054aa;

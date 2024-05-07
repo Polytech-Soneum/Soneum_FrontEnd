@@ -216,8 +216,11 @@
 
         &_input {
           font-family: 'WavvePADO-Regular' , serif;
+          width: 100%;
           height: 100%;
-          left: 17%;
+          border-radius: 20px 20px 0 0;
+          left: 0;
+          margin: 0;
           position: absolute;
         }
 
@@ -290,6 +293,7 @@
       width: 90vw;
       margin: 0 auto;
       height: $certificate_area_height;
+      font-size: 1vw;
 
       &_button_area {
         width: 100%;
@@ -890,4 +894,11 @@
 .camera_selector {
   background-color: white;
   width: 40%;
+  height: 2vh;
+
+  &_option {
+    background-color: #d2e9ef;
+    width: 45%;
+    height: 2.5vh;
+  }
 }
