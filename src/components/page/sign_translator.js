@@ -14,22 +14,10 @@ function SignTranslator() {
     const [isMale, setGender] = useState(true);
 
     const genderToggle = () => {
-        const className = document.getElementsByClassName("page_main_text_area_button_toggle_gender_circle")[0].classList;
-
-        if(className.contains('page_main_text_area_button_toggle_gender_circle_left')) {
-            className.remove("page_main_text_area_button_toggle_gender_circle_left");
-            className.add("page_main_text_area_button_toggle_gender_circle_right");
-            setGender(false);
-        } else {
-            className.remove("page_main_text_area_button_toggle_gender_circle_right");
-            className.add("page_main_text_area_button_toggle_gender_circle_left");
-            setGender(true);
-        }
+        setGender(!isMale);
     }
 
-    const voiceMaker = () => {
-        const textAreaValue = document.getElementsByClassName('page_main_text_area_text_input')[0].value;
-        
+    const voiceMaker = async () => {
         if(textAreaValue === '') {
             Swal.fire({
                 icon: 'warning',
@@ -37,9 +25,11 @@ function SignTranslator() {
                 confirmButtonText: '확인',
             });
         } else {
-            console.log(textAreaValue, isMale);
-            const axios_data = {text: textAreaValue, gender: isMale};
-            axios.get('/translate/text', {params: axios_data}).then((result) => console.log(result.data));
+            const translateBase64VoiceValue = await axios.get('http://localhost:9091/translate/text', {params: {text: textAreaValue, selectedGender: isMale}});
+
+            const audioFile = new Audio();
+            audioFile.src = `data:audio/mp3;base64,${translateBase64VoiceValue.data}`;
+            audioFile.play();
         }
     }
 
@@ -97,7 +87,19 @@ function SignTranslator() {
                 const blob  = new Blob(recordedChunks, {type: 'video/webm'});
                 setRecordedChunks([]);
 
-                console.log(blob);
+                const reader = new FileReader();
+                reader.readAsDataURL(blob);
+
+                reader.onloadend = async () => {
+                    const base64Data = reader.result.split(',')[1];
+                    axios.post('http://localhost:9091/translate/sign', { sign_video: base64Data })
+                        .then((response) => {
+                            console.log(response.data);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                };
             }
         }
 
@@ -183,7 +185,7 @@ function SignTranslator() {
                                      alt="남성기호"/>
                             </div>
                             <div
-                                className="page_main_text_area_button_toggle_gender_circle page_main_text_area_button_toggle_gender_circle_left"></div>
+                                className={isMale ? "page_main_text_area_button_toggle_gender_circle page_main_text_area_button_toggle_gender_circle_left" : "page_main_text_area_button_toggle_gender_circle page_main_text_area_button_toggle_gender_circle_right"}></div>
                         </div>
                     </div>
                     <div className="page_main_text_area_button_speaker">

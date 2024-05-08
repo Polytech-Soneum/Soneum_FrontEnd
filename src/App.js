@@ -9,6 +9,7 @@ import Certificate from "./components/page/certificate";
 import Login from "./components/page/login";
 import Register from "./components/page/register";
 import Test from "./components/page/test";
+import axios from "axios";
 
 function App() {
   const pathname = useLocation().pathname;

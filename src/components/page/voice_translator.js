@@ -18,7 +18,7 @@ function VoiceTranslator() {
                 confirmButtonText: '확인',
             });
         } else {
-            axios.get('/translate/voice', {params: {text: textAreaValue}}).then((result) => setTranslateResult(result.data));
+            axios.get('http://localhost:9091/translate/voice', {params: {text: textAreaValue}}).then((result) => setTranslateResult(result.data)).catch((error) => setTranslateResult('error: ' + error));
         }
     }
 
