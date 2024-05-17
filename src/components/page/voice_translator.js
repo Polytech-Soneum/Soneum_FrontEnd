@@ -10,7 +10,7 @@ function VoiceTranslator() {
     const [ textAreaValue, setTextAreaValue ] = useState('');
     const [ translateResult, setTranslateResult ]= useState('');
 
-    const voiceTranslate = () => {
+    const voiceTranslate = async () => {
         if(textAreaValue === '') {
             Swal.fire({
                 icon: 'warning',
@@ -18,7 +18,9 @@ function VoiceTranslator() {
                 confirmButtonText: '확인',
             });
         } else {
-            axios.get('http://localhost:9091/translate/voice', {params: {text: textAreaValue}}).then((result) => setTranslateResult(result.data)).catch((error) => setTranslateResult('error: ' + error));
+            const translate_result = await axios.get('http://localhost:9091/translate/voice', {params: {text: textAreaValue}});
+            console.log(translate_result.data.message);
+            //axios.get('http://localhost:9091/translate/voice', {params: {text: textAreaValue}}).then((result) => console.log(result.data.message)).catch((error) => setTranslateResult('error: ' + error));
         }
     }
 

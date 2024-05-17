@@ -101,6 +101,7 @@
         height: $button_height;
         line-height: $button_height;
         border-radius: 0 0 50px 50px;
+        border-top: 2px solid #CCCCCC;
 
         &_image {
           float: left;
