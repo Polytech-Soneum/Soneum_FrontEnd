@@ -1,7 +1,7 @@
 .page {
   margin: 0;
   padding: 0;
-  font-family: 'WavvePADO-Regular' , serif;
+  font-family: 'Pretendard-Regular' , serif;
 
   $header_height: 9vh;
   $footer_height: 7vh;
@@ -36,7 +36,6 @@
           z-index: 1;
           position: relative;
           text-align: center;
-          font-weight: bold;
           font-size: 1vw;
 
           &:hover {
@@ -57,10 +56,12 @@
 
           &_left {
             transform: translateX(0);
+            transition: 0.5s;
           }
 
           &_right {
             transform: translateX(100%);
+            transition: 0.5s;
           }
         }
       }
@@ -78,6 +79,19 @@
       $input_height: calc($text_area_height * 0.85);
       $button_height: calc($text_area_height - $input_height);
 
+      &_loader {
+        height: calc($input_height / 3);
+        line-height: calc($input_height / 3);
+        background-color: white;
+        text-align: center;
+        width: 50%;
+        margin: 0 auto;
+
+        &_hidden {
+          display: none;
+        }
+      }
+
       &_text {
         height: $input_height;
 
@@ -89,7 +103,20 @@
           border: none;
           border-radius: 50px 50px 0 0;
           font-size: 1.2vw;
-          font-family: 'WavvePADO-Regular' , serif;
+
+          &_translating {
+            padding: 3vh 2vw;
+            width: calc(100% - 4vw);
+            resize: none;
+            border: none;
+            border-radius: 50px 50px 0 0;
+            font-size: 1.2vw;
+            height: calc(calc($input_height - 6vh) / 4);
+
+            &:focus {
+              outline: none;
+            }
+          }
 
           &:focus {
             outline: none;
@@ -160,10 +187,12 @@
 
               &_left {
                 transform: translateX(0);
+                transition: 0.5s;
               }
 
               &_right {
                 transform: translateX(100%);
+                transition: 0.5s;
               }
             }
           }
@@ -178,7 +207,6 @@
           border-radius: 0 0 50px 0;
           text-align: center;
           font-size: 1.2vw;
-          font-weight: bold;
           color: white;
 
           &:hover {
@@ -216,7 +244,6 @@
         position: relative;
 
         &_input {
-          font-family: 'WavvePADO-Regular' , serif;
           width: 100%;
           height: 100%;
           border-radius: 20px 20px 0 0;
@@ -274,9 +301,33 @@
         }
       }
 
+      &_loader {
+        width: 55%;
+        height: $other_area_height;
+        line-height: $other_area_height;
+        background-color: white;
+        border-radius: 50px;
+        z-index: 999;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+
+        &_hidden {
+          display: none;
+        }
+      }
+
+      &_avatar {
+        width: 100%;
+        border-radius: 50px;
+        height: $other_area_height;
+        position: relative;
+        z-index: 100;
+      }
+
       &_context {
         position: relative;
-        top: 82%;
+        top: -20%;
         width: 90%;
         margin: 0 auto;
         height: calc($other_area_height * 0.1);
@@ -284,6 +335,7 @@
         background-color: #cccccc;
         opacity: 0.5;
         border-radius: 20px;
+        z-index: 150;
       }
     }
 
@@ -490,7 +542,6 @@
           margin: 0 0 0 0.5vw;
           padding: 0;
           font-size: 1vw;
-          font-family: 'WavvePADO-Regular' , serif;
 
           &:focus {
             outline: none;
@@ -662,7 +713,6 @@
             font-size: 0.8vw;
             height: calc(calc($login_subject_height * 0.5) - 3vh);
             line-height: calc(calc($login_subject_height * 0.5) - 3vh);
-            font-family: 'WavvePADO-Regular' , serif;
 
             &:focus{
               outline: none;
@@ -689,7 +739,6 @@
           font-size: 0.8vw;
           height: calc(calc($login_subject_height * 0.5) - 3vh);
           line-height: calc(calc($login_subject_height * 0.5) - 3vh);
-          font-family: 'WavvePADO-Regular' , serif;
 
           &:focus {
             outline: none;
@@ -783,7 +832,6 @@
             line-height: $register_area_subject_height;
             font-size: 1vw;
             background-color: #FFF1DD;
-            font-family: 'WavvePADO-Regular' , serif;
           }
         }
       }
@@ -828,7 +876,6 @@
           padding: 0 0.5vw;
           border: none;
           font-size: 1vw;
-          font-family: 'WavvePADO-Regular' , serif;
 
           &:focus {
             outline: none;

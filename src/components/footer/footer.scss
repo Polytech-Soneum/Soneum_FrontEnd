@@ -3,8 +3,31 @@ $footer_height: 7vh;
 .page_footer {
   height: $footer_height;
   width: 100vw;
-  background-color: #374c75;
-  font-family: 'WavvePADO-Regular' , serif;
+  background-color: #d2e9ef;
+
+  &_logo {
+    height: $footer_height - 1vh;
+    margin: 0 0 0 2vw;
+    width: 8vw;
+    float: left;
+  }
+
+  &_copyright {
+    float: left;
+    height: $footer_height;
+    line-height: $footer_height;
+    margin: 0 0 0 1vw;
+    font-size: 1vw;
+  }
+
+  &_catchphrase {
+    float: right;
+    height: $footer_height;
+    line-height: $footer_height;
+    margin: 0 1vw 0 0;
+    font-size: 0.8vw;
+    color: #374c75;
+  }
 
   &_menus {
     height: $footer_height;
@@ -28,4 +51,3 @@ $footer_height: 7vh;
     }
   }
 }
-/* https://noonnu.cc/font_page/1370 */

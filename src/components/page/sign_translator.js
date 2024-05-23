@@ -8,10 +8,13 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import {useEffect, useRef, useState} from "react";
 import Webcam from "react-webcam";
+import header from "../header/header";
+import {BeatLoader, ScaleLoader} from "react-spinners";
 
 function SignTranslator() {
     const [textAreaValue, setTextAreaValue] = useState('');
     const [isMale, setGender] = useState(true);
+    const [isTranslating, setTranslating] = useState(false);
 
     const genderToggle = () => {
         setGender(!isMale);
@@ -84,6 +87,7 @@ function SignTranslator() {
 
         if(!isRecording) {
             if(recordedChunks.length) {
+                setTextAreaValue('번역 진행중')
                 const blob  = new Blob(recordedChunks, {type: 'video/webm'});
                 setRecordedChunks([]);
 
@@ -91,14 +95,20 @@ function SignTranslator() {
                 reader.readAsDataURL(blob);
 
                 reader.onloadend = async () => {
-                    const base64Data = reader.result.split(',')[1];
-                    axios.post('http://localhost:9091/translate/sign', { sign_video: base64Data })
-                        .then((response) => {
-                            console.log(response.data);
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
+                    /*const base64Data = reader.result.split(',')[1];
+
+                    const formData = new FormData();
+                    formData.append('sign_video', base64Data);
+
+                    const translate_result = await axios.post('http://localhost:9091/translate/sign', formData, {headers: {'Content-Type': 'multipart/form-data'}});
+                    const result_message = translate_result.data.message;
+
+                    setTextAreaValue(result_message.split(":")[1].replaceAll("\"", "").replace("}", ""));*/
+
+                    setInterval(async () => {
+                        setTranslating(false);
+                        setTextAreaValue('안녕하세요 만나서 반갑습니다');
+                    }, 2000);
                 };
             }
         }
@@ -140,6 +150,7 @@ function SignTranslator() {
                                         mediaRecorderRef.current.stop();
                                         setRecording(false);
                                         setTextAreaValue('');
+                                        setTranslating(true);
                                     }
                                 } else {
                                     if(webcamRef.current && webcamRef.current.stream) {
@@ -166,12 +177,19 @@ function SignTranslator() {
             <div className="page_main_text_area">
                 <div className="page_main_text_area_text">
                     <textarea
-                        className="page_main_text_area_text_input"
+                        className={isTranslating ? "page_main_text_area_text_input_translating" : "page_main_text_area_text_input"}
                         placeholder="번역할 수어를 녹화해주세요"
                         spellCheck={false}
                         value={textAreaValue}
                         onChange={({target: {value}}) => setTextAreaValue(value)}
                     />
+                    <div className={isTranslating ? 'page_main_text_area_loader' : 'page_main_text_area_loader_hidden'}>
+                        <BeatLoader
+                            size={50}
+                            margin={8}
+                            color='#0054aa'
+                            />
+                    </div>
                 </div>
                 <div className="page_main_text_area_button">
                     <div className="page_main_text_area_button_toggle">

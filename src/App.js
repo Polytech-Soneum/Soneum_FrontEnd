@@ -24,7 +24,7 @@ function App() {
         <div className="page_main">
           {isTranslate && <TranslateToggle />}
           <Routes>
-            <Route path="/" element={<Test />}/>
+            <Route path="/" />
             <Route path="/search" element={<SearchResult/>}/>
             <Route path="/translate/voice" element={<VoiceTranslator/>}/>
             <Route path="/translate/sign" element={<SignTranslator/>}/>

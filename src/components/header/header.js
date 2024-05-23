@@ -31,7 +31,7 @@ function Header() {
                     </div>
                 </div>
             </div>
-            <div className="page_header_menus">
+            {/* <div className="page_header_menus">
                 <div className="page_header_menus_menu">
                     <span>수화통역사</span>
                     <div className="page_header_menus_menu_sub">
@@ -53,7 +53,7 @@ function Header() {
             </div>
             <div className="page_header_login">
                 <Link to={"/login"}><p className="page_header_login_text">로그인</p></Link><Link to={"/register"}><p className="page_header_login_text">회원가입</p></Link>
-            </div>
+            </div> */}
         </div>
     );
 }
