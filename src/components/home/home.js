@@ -1,29 +1,18 @@
+import { useNavigate } from 'react-router-dom';
 import './home.scss';
-import {Link} from "react-router-dom";
 
-function Home() {
-    return (
-        <header className="App-header">
-            <div className="page_moving_area">
-                <div className="page_moving_area_div">
-                    <p className="page_moving_area_div_name"> 번역기 </p>
-                    <div className="page_moving_area_div_buttons">
-                        <Link to={"/translate/voice"} style={{textDecoration: "inherit", color: "inherit"}}><div className="page_moving_area_div_buttons_button"> 음성번역 </div></Link>
-                        <Link to={"/translate/sign"} style={{textDecoration: "inherit", color: "inherit"}}><div className="page_moving_area_div_buttons_button"> 수어번역 </div></Link>
-                    </div>
-                </div>
-                <div className="page_moving_area_div">
-                    <p className="page_moving_area_div_name"> 번역기 </p>
-                </div>
-                <div className="page_moving_area_div">
-                    <p className="page_moving_area_div_name"> 번역기 </p>
-                </div>
-                <div className="page_moving_area_div">
-                    <p className="page_moving_area_div_name"> 번역기 </p>
-                </div>
+export function Home() {
+    const navigate = useNavigate('');
+
+    return(
+        <div className='App-main'>
+            <div className='App-main-top'>세상 모든 사람이 일상에서 불편함이 없을 때까지</div>
+            <div className='App-main-banner'>바로가기</div>
+            <div className='App-main-button'>
+                <div onClick={() => navigate('/translate/voice')}>음성번역</div>
+                <div onClick={() => navigate('/translate/sign')}>수어번역</div>
+                <div onClick={() => navigate('/certificate/test')}>모의시험</div>
             </div>
-        </header>
+        </div>
     );
 }
-
-export default Home;

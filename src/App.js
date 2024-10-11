@@ -1,41 +1,47 @@
 import './App.scss';
-import { Routes, Route, useLocation } from "react-router-dom";
-import VoiceTranslator from "./components/page/voice_translator";
-import SignTranslator from "./components/page/sign_translator";
-import {useEffect, useState} from "react";
-import TranslateToggle from "./components/page/translate_toggle";
-import SearchResult from "./components/page/search_result";
-import Certificate from "./components/page/certificate";
-import Login from "./components/page/login";
-import Register from "./components/page/register";
-import Test from "./components/page/test";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { Home } from './components/home/home';
+import { RightMenu } from './components/right_menu/right_menu';
+import { Header } from './components/header/header';
+import { SignToVoice } from './components/translate/sing2voice/sign_to_voice';
+import { VoiceToSign } from './components/translate/voice2sign/voice_to_sign';
+import { Login } from './components/user/login/login';
+import { UserProvider } from './components/context/userProvider';
+import { MockTest } from './components/certificate/mock_test/mock_test';
+import { CertificateBoard } from './components/certificate/certificate_board/certificate_board';
+import { Register } from './components/user/register/register';
+import { Admin } from './components/admin/admin';
+import { CertificateInfo } from './components/certificate/certificate_info/certificate_info';
 
 function App() {
-  const pathname = useLocation().pathname;
-  const [isTranslate, setTranslateToggle] = useState(false);
-
-  useEffect(() => {
-    setTranslateToggle(pathname.includes('translate'));
-  }, [pathname]);
+  const [isOpen, setOpen] = useState(false);
+  const [isFull, setFull] = useState(false);
+  const location = useLocation();
 
   return (
-      <div className="page">
-        <div className="page_main">
-          {isTranslate && <TranslateToggle />}
+    <UserProvider>
+      <div className="App">
+        { !location.pathname.includes('/admin') && <Header setOpen={setOpen} isFull={isFull} setFull={setFull}/> }
+        <RightMenu isOpen={isOpen} setOpen={setOpen} />
+        <div className={`App-main ${location.pathname.includes('/translate') ? isFull ? 'full' : 'translate' : ''}`}>
           <Routes>
-            <Route path="/" />
-            <Route path="/search" element={<SearchResult/>}/>
-            <Route path="/translate/voice" element={<VoiceTranslator/>}/>
-            <Route path="/translate/sign" element={<SignTranslator/>}/>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/register" element={<Register/>}/>
-            <Route path="/certificate/information" element={<Certificate/>}/>
-            <Route path="/certificate/written" element={<Certificate/>}/>
-            <Route path="/certificate/performance" element={<Certificate/>}/>
+            <Route path='/' element={<Home />}/>
+            <Route path='/translate/voice' element={<VoiceToSign isFull={isFull} />}/>
+            <Route path='/translate/sign' element={<SignToVoice isFull={isFull} />}/>
+
+            <Route path='/certificate' element={<CertificateInfo />}/>
+            <Route path='/certificate/board' element={<CertificateBoard />}/>
+            <Route path='/certificate/test' element={<MockTest isFull={isFull} setFull={setFull}/>}/>
+
+            <Route path='/login' element={<Login />}/>
+            <Route path='/register' element={<Register />}/>
+
+            <Route path='/admin' element={<Admin setFull={setFull} />} />
           </Routes>
         </div>
       </div>
+    </UserProvider>
   );
 }
 
