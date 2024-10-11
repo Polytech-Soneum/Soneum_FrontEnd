@@ -1,0 +1,110 @@
+@import '../translate.scss';
+
+.page-translate-other {       
+    &-loader {
+        width: 95%;
+        height: 100%;
+        border-radius: 20px;
+        padding: 0 2.5%;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        p {
+            font-weight: bold;
+
+            @include pc {
+                font-size: 50px;
+            }
+
+            @include mobile {
+                font-size: 30px;
+            }
+            
+        }
+
+        &-bar {
+            width: 100%;
+            height: 4vh;
+            background-color: #808080;
+            border-radius: 20px;
+
+            &-gauge {
+                height: 4vh;
+                background-color: #FFA500;
+                border-radius: 20px;
+                font-weight: bold;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    &-unity {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+    }
+}
+
+// @include mobile {
+//     .page-main-other {
+//         margin-top: 5%;
+//     }
+// }
+
+// .page-main-other-unity {
+//     width: 100%;
+//     height: 100%;
+//     margin: 0;
+//     padding: 0;
+//     border-radius: 20px;
+//     position: relative;
+// }
+
+// .page-main-other-loader {
+//     width: 100%;
+//     height: 100%;
+//     background-color: #FFFFFF;
+//     position: absolute;
+//     border-radius: 20px;
+//     z-index: 5;
+//     text-align: center;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+
+//     p {
+//         font-weight: bold;
+
+//         @include pc {
+//             font-size: 50px;
+//         }
+
+//         @include mobile {
+//             font-size: 30px;
+//         }
+        
+//     }
+
+//     &-bar {
+//         width: 95%;
+//         height: 5vh;
+//         margin: 0 auto;
+//         background-color: #808080;
+//         border-radius: 20px;
+
+//         &-gauge {
+//             height: 5vh;
+//             background-color: #FFA500;
+//             border-radius: 20px;
+//             font-weight: bold;
+//             display: flex;
+//             justify-content: center;
+//             align-items: center;
+//         }
+//     }
+// }

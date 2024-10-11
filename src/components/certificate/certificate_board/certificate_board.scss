@@ -1,0 +1,330 @@
+@import '../../../App.scss';
+
+.board {
+    &-top {
+        width: 100%;
+        height: 15%;
+        background-color: aquamarine;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @include mobile {
+            height: 10%;
+        }
+
+        &-title {
+            margin: 0.5vh 0;
+            padding: 0;
+            font-weight: 800;
+            @include pc {
+                font-size: 30px;
+            }
+    
+            @include mobile {
+                font-size: 20px;
+            }
+        }
+
+        &-content {
+            margin: 0;
+            padding: 0;
+            font-weight: 600;
+
+            @include pc {
+                font-size: 15px;
+            }
+
+            @include mobile {
+                font-size: 12px;
+            }
+
+            span {
+                cursor: pointer;
+            }
+        }
+    }
+
+    &-main {
+        width: 100%;
+        height: 80%;
+
+        @include mobile {
+            height: 90%;
+        }
+
+        &-info {
+            $info-height: 9vh;
+
+            width: 85%;
+            height: $info-height;
+            padding: 0 7.5%;
+
+            p {
+                margin: 0;
+                padding: 0;
+                height: $info-height;
+                line-height: $info-height;
+                width: 15%;
+
+                @include pc {
+                    float: left;
+                }
+                
+                @include mobile {
+                    width: 100%;
+                    font-size: 15px;
+                    height: 4vh;
+                    line-height: 4vh;
+                }
+
+                span {
+                    font-weight: 700;
+                    color: #5d65cc;
+                }
+            }
+
+
+            &-search {
+                width: 30%;
+                height: $info-height;
+                display: flex; /* Flexbox 적용 */
+                justify-content: space-between; /* 아이템 간의 간격 조절 */
+                align-items: center; /* 아이템들을 세로 중앙 정렬 */
+            
+                @include pc {
+                    float: right;
+                }
+            
+                @include mobile {
+                    width: 100%;
+                    height: 5vh;
+                    line-height: 5vh;
+                    flex-wrap: wrap;
+                }
+            
+                select {
+                    display: inline-block;
+                    height: $info-height * 0.6;
+                    line-height: $info-height * 0.6;
+                    margin: $info-height * 0.2 0;
+                    width: 20%;
+                    text-align: center;
+                    border: 1px solid #d1d1d1;
+                    box-sizing: border-box;
+            
+                    @include mobile {
+                        height: 5vh;
+                        line-height: 5vh;
+                        margin: 0;
+                    }
+            
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            
+                input {
+                    display: inline-block;
+                    height: $info-height * 0.6;
+                    line-height: $info-height * 0.6;
+                    margin: $info-height * 0.2 0;
+                    width: 60%;
+                    box-sizing: border-box;
+                    border: 1px solid #d1d1d1;
+            
+                    @include mobile {
+                        height: 5vh;
+                        line-height: 5vh;
+                        margin: 0;
+                    }
+            
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            
+                &-button {
+                    display: inline-block;
+                    height: $info-height * 0.6;
+                    line-height: $info-height * 0.6;
+                    margin: $info-height * 0.2 0;
+                    width: 20%;
+                    text-align: center;
+                    box-sizing: border-box;
+                    border: 1px solid #d1d1d1;
+                    background-color: #5d65cc;
+                    color: #ffffff;
+                    font-weight: 700;
+            
+                    @include mobile {
+                        height: 5vh;
+                        line-height: 5vh;
+                        margin: 0;
+                    }
+                }
+            
+                &-write {
+                    display: inline-block;
+                    height: $info-height * 0.6;
+                    line-height: $info-height * 0.6;
+                    margin: $info-height * 0.2 0;
+                    width: 20%;
+                    text-align: center;
+                    box-sizing: border-box;
+                    border: 1px solid #d1d1d1;
+                    background-color:#ffffff;
+                    color: #5d65cc;
+                    font-weight: 700;
+            
+                    @include mobile {
+                        width: 100%;
+                        height: 4vh;
+                        line-height: 4vh;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+        &-board {
+            width: 85%;
+            margin: 1vh auto 0;
+            text-align: center;
+            border-collapse: collapse;
+            background-color: #ffffff;
+
+            tr {
+                padding: 1vh 0;
+            }
+
+            thead {
+                border-top: 5px solid #5d65cc;
+                border-bottom: 1px solid #5d65cc;
+
+                th {
+                    padding: 1.5vh 0;
+
+                    &:nth-of-type(1) {
+                        width: 10%;
+                    }
+                    &:nth-of-type(2) {
+                        width: 55%;
+                    }
+                    &:nth-of-type(3) {
+                        width: 10%;
+                    }
+                    &:nth-of-type(4) {
+                        width: 15%;
+                    }
+                    &:nth-of-type(5) {
+                        width: 10%;
+                    }
+
+                    @include mobile {
+                        display: none;
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    border-bottom: 1px solid #d1d1d1;
+
+                    @include mobile {
+                        display: flex;
+                        flex-wrap: wrap;
+                    }
+                }
+                td {
+                    padding: 1.3vh 0;
+
+                    &:nth-of-type(2) {
+                        text-align: left;
+
+                        &:hover {
+                            cursor: pointer;
+                            text-decoration: underline;
+                        }
+                    }
+
+                    @include mobile {
+                        font-size: 15px;
+                        padding: 1vh 0;
+                        
+                        &:nth-of-type(1), &:nth-of-type(5) {
+                            display: none;
+                        }
+
+                        &:nth-of-type(2) {
+                            flex: 1 0 100%;
+                            padding-left: 5%;
+                        }
+
+                        &:nth-of-type(3), &:nth-of-type(4) {
+                            margin-left: 5%;
+                            font-size: 12px;
+                            padding: 0.2vh 0;
+                        }
+
+                        &:nth-of-type(3) {
+                            padding-right: 5%;
+                            border-right: 1px solid #747474;
+                        }
+                    }
+                } 
+            }
+        }
+
+        &-bottom {
+            $bottom-height: 4vh;
+
+            width: 85%;
+            height: $bottom-height;
+            padding: 0 7.5%;
+            text-align: center;
+            margin: 1vh 0;
+
+            &-move {
+                background-color: #d1d1d1;
+
+                &:hover {
+                    background-color: #8a8a8a;
+                    color: #ffffff;
+                }
+            }
+
+            &-number {
+                background-color: #ffffff;
+
+                &-selected {
+                    background-color: #000000;
+                    color: #ffffff;
+                }
+
+                &:hover {
+                    background-color: #000000;
+                    color: #ffffff;
+                }
+            }
+
+            div {
+                display: inline-block;
+                width: 4vh;
+                height: $bottom-height;
+                line-height: $bottom-height;
+                border-radius: 10px;
+                margin: 0 0.1vw;
+                cursor: pointer;
+                box-sizing: border-box;
+                border: 1px solid #d1d1d1;
+                font-weight: 600;
+
+                @include mobile {
+                    margin: 0 0.2vw;
+                }
+            }
+        }
+    }
+}

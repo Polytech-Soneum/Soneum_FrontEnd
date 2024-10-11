@@ -1,0 +1,424 @@
+@import '../../App.scss';
+
+.admin-main {
+    width: 100%;
+    height: 100vh;
+    background-color: #ffffff;
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    &-info {
+        width: 100%;
+        height: 10vh;
+        background-color: #374c75;
+
+        p {
+            width: 20%;
+            height: 10vh;
+            line-height: 10vh;
+            margin-left: 1%;
+            text-align: left;
+            color: #ffffff;
+            font-weight: 400;
+            float: left;
+
+            @include mobile {
+                width: 50%;
+                font-size: 12px;
+                margin-left: 2%;
+            }
+            
+            span {
+                font-weight: 700;
+            }
+        }
+
+        &-day {
+            width: 15%;
+            height: 5vh;
+            line-height: 5vh;
+            margin: 2.5vh 1%;
+            text-align: center;
+            float: right;
+            background-color: #5d65cc;
+            color: #ffffff;
+            font-weight: 500;
+
+            @include mobile {
+                display: none;
+            }
+        }
+
+        &-button {
+            height: 5vh;
+            line-height: 5vh;
+            width: 7%;
+            text-align: center;
+            margin: 2.5vh 1%;
+            background-color: #5d65cc;
+            color: #ffffff;
+            font-weight: 600;
+            border-radius: 30px;
+            float: right;
+            cursor: pointer;
+
+            @include mobile {
+                width: 25%;
+                font-size: 12px;
+                margin-right: 2%;
+            }
+        }
+    }
+
+    &-bar {
+        width: 10%;
+        height: 90vh;
+        float: left;
+        background-color: #b1b1b1;
+        border-right: 1px solid #474747;
+        box-sizing: border-box;
+
+        @include mobile {
+            width: 25%;
+            font-size: 12px;
+        }
+
+        p {
+            width: 100%;
+            height: 5vh;
+            line-height: 5vh;
+            text-align: center;
+            border-bottom: 1px solid #474747;
+            cursor: pointer;
+
+            &.selected {
+                color: #ffffff;
+                background-color: #525252;
+                font-weight: 600;
+                border-bottom: 1px solid #e2e2e2;
+            }
+
+            &:hover {
+                color: #ffffff;
+                background-color: #525252;
+                font-weight: 600;
+                border-bottom: 1px solid #e2e2e2;
+            }
+        }
+    }
+
+    &-content {
+        width: 90%;
+        height: 90vh;
+        float: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @include mobile {
+            width: 75%;
+            font-size: 12px;
+        }
+
+        &-top {
+            width: 90%;
+            padding: 0 5%;
+            height: 4vh;
+            margin: 2vh 0 0;
+
+            @include mobile {
+                height: 8vh;
+            }
+        }
+
+        &-info {
+            float: left;
+            width: 25%;
+            height: 4vh;
+            box-sizing: border-box;
+
+            @include mobile {
+                width: 100%;
+                font-size: 12px;
+            }
+
+            p {
+                display: inline-block;
+                font-weight: 600;
+                height: 4vh;
+                line-height: 4vh;
+
+                span {
+                    font-weight: 800;
+                    color: #5d65cc;
+                }
+            }
+        }
+
+        &-search {
+            $search-height: 4vh;
+
+            width: 25%;
+            height: $search-height;
+            float: right;
+            box-sizing: border-box;
+
+            @include mobile {
+                width: 100%;
+                font-size: 12px;
+            }
+
+            select{
+                width: 25%;
+                height: $search-height;
+                line-height: $search-height;
+                float: left;
+                box-sizing: border-box;
+
+                @include mobile {
+                    font-size: 12px;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            input {
+                width: 55%;
+                height: $search-height;
+                line-height: $search-height;
+                float: left;
+                box-sizing: border-box;
+
+                @include mobile {
+                    font-size: 12px;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            div {
+                width: 20%;
+                height: $search-height;
+                line-height: $search-height;
+                background-color: #5d65cc;
+                color: #ffffff;
+                text-align: center;
+                font-weight: 700;
+                box-sizing: border-box;
+                float: left;
+
+                @include mobile {
+                    font-size: 12px;
+                }
+            }
+        }
+
+        &-table {
+            width: 90%;
+            margin: 2vh auto 0;
+            border-collapse: collapse;
+            border-top: 3px solid #374c75;
+
+            @include mobile {
+                font-size: 12px;
+            }
+
+            thead > tr {
+                border-bottom: 1px solid #374c75;
+            }
+
+            tr {
+                display: flex;
+                border-bottom: 1px solid #b1b1b1;
+            }
+
+            th {
+                padding: 1vh 0;
+                flex: 1;
+                word-break: keep-all;
+            }
+
+            td {
+                padding: 1vh 0;
+                text-align: center;
+                flex: 1;
+
+                button {
+                    border: none;
+                    border-radius: 10px;
+                    cursor: pointer;
+                }
+
+                &:nth-of-type(2) {
+                    &:hover {
+                        cursor: pointer;
+                        text-decoration: underline;
+                    }
+                }
+
+                &:nth-of-type(10) {
+                    button {
+                        background-color: #f87979;
+                    }
+                }
+            }
+            
+            @include mobile {
+                &.user {
+                    tr {
+                        flex-wrap: wrap;
+                    }
+                    
+                    th {
+                        display: none;
+                    }
+
+                    td {
+                        &:first-of-type, &:nth-of-type(3), &:nth-of-type(4), &:nth-of-type(8) {
+                            display: none;
+                        }
+                        
+                        &:nth-of-type(2) {
+                            flex: 1 0 10%;
+                            padding-left: 5%;
+                            font-weight: 700;
+                        }
+
+                        &:nth-of-type(5) {
+                            flex: 1 0 30%;
+                            padding-right: 40%;
+                            font-size: 10px;
+                            font-weight: 0;
+                        }
+
+                        &:nth-of-type(6), &:nth-of-type(7), &:nth-of-type(9), &:nth-of-type(10) {
+                            margin-left: 5%;
+                            font-size: 10px;
+                            padding: 0.5vh 0;
+                            flex: none;
+                        }
+
+                        &:nth-of-type(6), &:nth-of-type(7), &:nth-of-type(9) {
+                            padding-right: 5%;
+                            border-right: 1px solid #747474;
+                        }
+
+                        &:nth-of-type(10) {
+                            button {
+                                background-color: #f87979;
+                            }
+                        }
+
+                        button {
+                            font-size: 10px;
+                            border: none;
+                            border-radius: 10px;
+                        }
+
+                        
+                    }
+                }
+
+                &.board {
+                    tr {
+                        flex-wrap: wrap;
+                    }
+
+                    th {
+                        display: none;
+                    }
+
+                    td {
+                        &:first-of-type, &:last-of-type {
+                            display: none;
+                        }
+
+                        &:nth-of-type(2) {
+                            flex: 1 0 100%;
+                            padding-left: 5%;
+                            font-weight: 600;
+                            text-align: left;
+                        }
+                        
+                        &:nth-of-type(3), &:nth-of-type(4), &:nth-of-type(5) {
+                            margin-left: 5%;
+                            font-size: 10px;
+                            flex: none;
+                            padding: 0.5vh 0;
+                        }
+
+                        &:nth-of-type(3), &:nth-of-type(4) {
+                            padding-right: 5%;
+                            border-right: 1px solid #747474;
+                        }
+                    }
+                }
+            }
+        }
+
+        &-bottom {
+            $bottom-height: 4vh;
+
+            width: 85%;
+            height: $bottom-height;
+            padding: 0 7.5%;
+            text-align: center;
+            margin: 1vh 0;
+
+            @include mobile {
+                margin: 1vh 0;
+                height: 3vh;
+            }
+
+            &-move {
+                background-color: #d1d1d1;
+
+                &:hover {
+                    background-color: #8a8a8a;
+                    color: #ffffff;
+                }
+            }
+
+            &-number {
+                background-color: #ffffff;
+
+                &-selected {
+                    background-color: #000000;
+                    color: #ffffff;
+                }
+
+                &:hover {
+                    background-color: #000000;
+                    color: #ffffff;
+                }
+            }
+
+            div {
+                display: inline-block;
+                width: $bottom-height;
+                height: $bottom-height;
+                line-height: $bottom-height;
+                border-radius: 10px;
+                margin: 0 0.1vw;
+                cursor: pointer;
+                box-sizing: border-box;
+                border: 1px solid #d1d1d1;
+                font-weight: 600;
+
+                @include mobile {
+                    margin: 0 0.2vw;
+                    height: 3vh;
+                    line-height: 3vh;
+                    width: 3vh;
+                }
+            }
+        }
+    }
+}
